@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let obj1 = {
+        name: "小明",
+        sing: {
+            name: "上学",
+            age: {
+                name: '19'
+            }
+        },
+
+    }
+    // let obj1 = [1,23,4,45]
+    function deepClone (obj) {
+
+        if (obj == null) return obj
+
+        if (obj instanceof Date) return new Date()
+
+        if (obj instanceof RegExp) return new RegExp()
+
+        if (typeof obj !== "object") return obj
+
+        let res = new obj.constructor()
+
+
+        for (key in obj) {
+            res[key] = deepClone(obj[key])
+        }
+        console.log(res);
+        return res
+    }
+    let obj2 = deepClone(obj1)
+    // obj2.name = "小红"
+    // obj2.sing.name = "。。。"
+    console.log(obj1, obj2);
+
+
+    console.log("分割---------------------");
+
+    function deepClone (obj) {
+
+        if (obj == null) return obj
+
+        if (obj instanceof Date) return new Date()
+
+        if (obj instanceof RegExp) return new RegExp()
+
+        if (typeof obj !== "object") return obj
+
+        let res = new obj.constructor()
+
+
+        for (key in obj) {
+            res[key] = deepClone(obj[key])
+        }
+        console.log(res);
+        return res
+    }
+    let obj3 = deepClone(obj1)
+    console.log(obj1, obj3);
+
+    console.log("分割---------------------");
+
+    let obj4 = [1, 23, 4, 45]
+    function deepClone (obj) {
+
+        if (obj == null) return obj
+
+        if (obj instanceof Date) return new Date()
+
+        if (obj instanceof RegExp) return new RegExp()
+
+        if (typeof obj !== "object") return obj
+
+        let res = new obj.constructor()
+
+
+        for (key in obj) {
+            res[key] = deepClone(obj[key])
+        }
+        console.log(res);
+        return res
+    }
+    let obj5 = deepClone(obj4)
+    console.log(obj4, obj5);
+</script>
+
+</html>

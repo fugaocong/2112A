@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+</body>
+<script>
+
+    const F4 = [1, 2, 3, 4]
+    let [a, b, c, d] = F4
+    console.log(a, b, c, d);
+    const FU = {
+        name: "付",
+        job: function () {
+            console.log("姓氏" + name);
+        }
+    }
+    let { job } = FU
+    console.log(job);
+
+
+
+    console.log("分割-----------------------");
+
+    const F3 = [1, 2, 3, 4]
+    let [e, f, g, h] = F3
+    console.log(e, f);
+    const GUO = {
+        name: "付",
+        job: function () {
+            console.log("姓氏" + name);
+        }
+    }
+    let { name } = GUO
+    console.log(name);
+
+    console.log("分割-----------------------");
+
+    const F2 = [1, 2, 3, 4]
+    let [i, j, k, l] = F2
+    console.log(k, l);
+    const ZHAO = {
+        name: "付",
+        age:18,
+        job: function () {
+            console.log("姓氏" + name);
+        }
+    }
+    let { age } = ZHAO
+    console.log(age);
+</script>
+
+</html>

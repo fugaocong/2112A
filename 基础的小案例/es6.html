@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 1.不能重复声明
+    let a
+    let b, c, d
+    let e = 100
+    let f = 521, g = "live", h = []
+
+    // 2.块级作用域
+    {
+        let boy = "hei"
+    }
+    let boy = "hei"
+    console.log(boy);
+
+    // 3.不存在变量提升
+    // console.log(song);   //这个地方会报错
+    let song = "wan"
+
+    // 4.不影响作用域链
+    {
+        let school = "大学"
+        function fn(){
+            console.log(school);
+        }
+        fn()
+    }
+</script>
+
+</html>
