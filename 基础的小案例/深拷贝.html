@@ -48,54 +48,7 @@
     console.log(obj1, obj2);
 
 
-    console.log("分割---------------------");
 
-    function deepClone (obj) {
-
-        if (obj == null) return obj
-
-        if (obj instanceof Date) return new Date()
-
-        if (obj instanceof RegExp) return new RegExp()
-
-        if (typeof obj !== "object") return obj
-
-        let res = new obj.constructor()
-
-
-        for (key in obj) {
-            res[key] = deepClone(obj[key])
-        }
-        console.log(res);
-        return res
-    }
-    let obj3 = deepClone(obj1)
-    console.log(obj1, obj3);
-
-    console.log("分割---------------------");
-
-    let obj4 = [1, 23, 4, 45]
-    function deepClone (obj) {
-
-        if (obj == null) return obj
-
-        if (obj instanceof Date) return new Date()
-
-        if (obj instanceof RegExp) return new RegExp()
-
-        if (typeof obj !== "object") return obj
-
-        let res = new obj.constructor()
-
-
-        for (key in obj) {
-            res[key] = deepClone(obj[key])
-        }
-        console.log(res);
-        return res
-    }
-    let obj5 = deepClone(obj4)
-    console.log(obj4, obj5);
 </script>
 
 </html>
