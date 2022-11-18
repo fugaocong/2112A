@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<body>
+
+</body>
+<script>
+
+    /*** 
+     * 第一步实例化Promise函数
+     * 通过new XMLHttpRequest()  实例化连接对象
+     * 通过请求方式，以及请求的接口路径
+     * 发送请求
+     * 绑定事件 处理响应结果
+     * promise的调用
+     *  ***/
+
+    const p = new Promise((resolve, reject) => {
+        // 创建对象
+        const xhr = new XMLHttpRequest()
+        // 初始化
+        xhr.open("GET", "https://api.apiopen.top/getjoke")
+        // 发送
+        xhr.send()
+        // 绑定事件，处理响应结果
+        xhr.onreadystatechange = function () {
+            // 判断
+            if (xhr.readyState === 4) {
+                // 判断响应状态码
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    // 表示成功
+                    resolve(xhr.response)
+                } else {
+                    // 如果失败
+                    reject(xhr.status)
+                }
+            }
+        }
+    })
+    // 指定回调
+    p.then(
+        res => {
+            console.log(res);
+        },
+        err => {
+            console.log(err);
+        }
+    )
+    console.log("分割------------------------");
+
+    // const p = new Promise((resolve, reject) => {
+    //     // 创建对象
+    //     const xhr = new XMLHttpRequest()
+    //     // 初始化
+    //     xhr.open("GET", "https://api.apiopen.top/getjoke")
+    //     // 发送
+    //     xhr.send()
+    //     // 绑定事件，处理响应结果
+    //     xhr.onreadystatechange = function () {
+    //         // 判断
+    //         if (xhr.readyState === 4) {
+    //             // 判断响应状态码
+    //             if (xhr.status >= 200 && xhr.status < 300) {
+    //                 // 表示成功
+    //                 resolve(xhr.response)
+    //             } else {
+    //                 // 如果失败
+    //                 reject(xhr.status)
+    //             }
+    //         }
+    //     }
+    // })
+    // // 指定回调
+    // p.then(
+    //     res => {
+    //         console.log(res);
+    //     },
+    //     err => {
+    //         console.log(err);
+    //     }
+    // )
+
+
+
+
+    console.log("分割------------------------");
+
+// const p = new Promise((resolve, reject) => {
+//     // 创建对象
+//     const xhr = new XMLHttpRequest()
+//     // 初始化
+//     xhr.open("GET", "https://api.apiopen.top/getjoke")
+//     // 发送
+//     xhr.send()
+//     // 绑定事件，处理响应结果
+//     xhr.onreadystatechange = function () {
+//         // 判断
+//         if (xhr.readyState === 4) {
+//             // 判断响应状态码
+//             if (xhr.status >= 200 && xhr.status < 300) {
+//                 // 表示成功
+//                 resolve(xhr.response)
+//             } else {
+//                 // 如果失败
+//                 reject(xhr.status)
+//             }
+//         }
+//     }
+// })
+// // 指定回调
+// p.then(
+//     res => {
+//         console.log(res);
+//     },
+//     err => {
+//         console.log(err);
+//     }
+// )
+</script>
+
+</html>

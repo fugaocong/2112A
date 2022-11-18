@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+</body>
+<script>
+    /***
+     *  构造函数的首字母要大写
+     * ***/
+
+    function Person () {
+
+    }
+    Person.prototype.sayHi = "Hi"
+    const per = new Person()
+    console.dir(Person)
+    console.log(per.sayHi);
+    console.log(per.__proto__ === Person.prototype);
+
+    // 原型的继承/
+
+    console.log("分割---------------------");
+    // function Person () {
+
+    // }
+    // Person.prototype.sayHi = "Hi"
+    // const per = new Person()
+    // console.dir(Person)
+    // console.log(per.sayHi);
+    // console.log(per.__proto__ === Person.prototype);
+
+
+
+    console.log("分割---------------------");
+    // function Person () {
+
+    // }
+    // Person.prototype.sayHi = "Hi"
+    // const per = new Person()
+    // console.dir(Person)
+    // console.log(per.sayHi);
+    // console.log(per.__proto__ === Person.prototype);
+
+
+</script>
+
+</html>
