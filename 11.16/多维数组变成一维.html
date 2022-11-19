@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // isArray 判断是不是一个数组
+    let arr = [1, 2, 3, [12, 23], 122, [56, 76]]
+    console.log(Array.isArray(arr));
+
+
+    // push   末尾添加 返回新数组的长度，会改变原数组
+    let arr1 = [1, 2]
+    let returnValue = arr1.push(3, 4, 5)
+    console.log(arr1);
+    console.log(returnValue);
+
+    // pop 末尾删除
+    let arr2 = [1, 2, 3]
+    let del = arr2.pop()
+    console.log(arr2);
+    console.log(del);
+
+    // unshift()   头部添加
+    let arr3 = [1, 2, 3]
+    let value = arr3.unshift(4, 5)
+    console.log(arr3);
+    console.log(value);
+
+    // shift()  头部删除
+    let dels = arr3.shift()
+    console.log(dels);
+
+    // concat()   合并数组
+    let result = arr3.concat(arr2)
+    console.log(result);
+
+    // reverse()  数组翻转 原数组改变
+    let results = result.reverse()
+    console.log(results);
+
+    // sort() 排序
+    results.sort((a, b) => {
+        return a - b
+    })
+    console.log(results);
+
+    // join  用指定字符连接形成一个字符串
+
+    let joins = results.join("-")
+    console.log(joins);
+
+    // toString()  将数组转化为字符串
+    let arr5 = [1, 23, 32, 43, 654]
+    let str = arr5.toString()
+    console.log(str);
+
+    // slice()  截取 包左不包右  不改变原数组
+    let a = ["项目一", "项目二", "项目三"]
+    let arr6 = a.slice(0, 2)
+    console.log(a);
+    console.log(arr6);
+
+    // splice() 删除 添加 修改 
+
+
+</script>
+
+</html>

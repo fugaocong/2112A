@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>移动端</title>
+</head>
+
+<body>
+    
+</body>
+<script>
+    let arr = [1, 2, 3, 4]
+    function deepClone (obj) {
+        if (obj == null) { return obj }
+        if (obj instanceof Date) { return new Date() }
+        if (obj instanceof RegExp) { return new RegExp() }
+        if (typeof obj !== "object") { return obj }
+        let res = new obj.constructor()
+        for (key in obj) {
+            res[key] = deepClone(obj[key])
+        }
+        return res
+    }
+    let arr1 = deepClone(arr)
+    console.log(arr1);
+</script>
+
+</html>

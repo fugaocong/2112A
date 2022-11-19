@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 默认绑定
+    function fn(){
+        console.log(this);
+    }
+    fn()
+
+
+    console.log("--------------------");
+
+
+    function fn1(){
+        console.log(this);
+    }
+    function fn2(){
+        console.log(this);
+        fn1()
+    }
+    function fn3(){
+        console.log(this);
+        fn2()
+    }
+    fn3()
+
+
+    console.log("--------------------");
+
+
+    var obj = {
+        name:'小明',
+        fn:function(){
+            console.log(this);
+        }
+    }
+    var bar = obj.fn
+    bar()
+
+
+    console.log("--------------------");
+
+
+    function fo(){
+        console.log(this);
+    }
+    var obj1 = {
+        name:'小米',
+        fo:fo
+    }
+    var bars = obj1.fo
+    bars()
+</script>
+
+</html>

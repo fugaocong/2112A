@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /**
+     *1.原型继承
+            优点：通过原型继承多个引用类型的属性和方法
+            缺点：Sub原型变成了Super的实例，如果Super的实例某个属性是引用值，该引用值就会被应用到所有Sub创建的实例
+
+        2.盗用构造函数
+            优点：每个实例都会有自己的a属性，哪怕是引用值也不会污染
+            缺点：Super构造函数中的方法在每个原型上都要创建一遍（除非该方法声明到全局）
+                Sub的实例无法访问Super原型上的方法
+        3.组合继承
+            优点：集合了【原型继承】和【盗用构造函数继承】的优点
+            缺点：存在效率问题，Super始终会被调用两次
+        4.原型式继承
+            优点：
+     * 
+    **/
+
+
+
+    // function Super () {
+    //     this.a = 1
+    // }
+    // Super.prototype.say = function () {
+    //     console.log("hhh");
+    // }
+    // function Sub () { }
+    // Sub.prototype = new Super()
+    // const test = new Sub()
+    // console.log(test.say());
+
+
+    // function Super () {
+    //     this.a = [1, 2]
+    // }
+    // function Sub () { }
+    // Sub.prototype = new Super()
+
+    // const test = new Sub()
+    // test.a.push(3)
+    // console.log(test.a);
+    // const test1 = new Sub()
+    // console.log(test.a);
+
+
+    // 盗用构造函数
+
+    // let Super = function () {
+    //     this.a = 1
+    // }
+    // Super.prototype.c = 3
+    // let Sub = function () {
+    //     Super.call(this)
+    //     this.b = 2
+    // }
+    // const test = new Sub()
+    // console.log(test);
+
+
+
+
+    // 组合继承
+    // function Super () { this.a = [1, 2] }
+    // Super.prototype.say = function () { console.log("hahaha"); }
+    // function Sub () {
+    //     Super.call(this)
+    //     this.b = 2
+    // }
+    // Sub.prototype = new Super()
+    // const test1 = new Sub()
+    // console.log(test1.say);
+    // test1.a.push(3)
+    // console.log(test1.a);
+    // const test2 = new Sub()
+    // console.log(test2.a);
+
+
+    // 原型式继承
+    // es5的方法
+    // const obj = {a:1}
+    // function createObj(o){
+    //     function Fn(){}
+    //     Fn.prototype = o
+    //     return new Fn()
+    // }
+    // const test = createObj(obj)
+    // console.log(test);
+
+
+    // es5之后
+    // const obj = {a:1}
+    // const test = Object.create(obj)
+    // console.log(test);
+
+
+    // 寄生式继承
+</script>
+
+</html>

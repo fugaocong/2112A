@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 强制转化成数字，如果字符串不是数字  会报NaN
+    let strNum = "12"
+    console.log(Number(strNum));
+    // 转换成数字，取整
+    let parStr = "12.3"
+    console.log(parseInt(parStr));
+    // 转换成数字，会去掉非数字部分
+    let flo = "12.25你好"
+    console.log(parseFloat(flo));
+
+
+
+    console.log("字符串转数字------------------------------");
+    console.log(Number(''));   //0
+    console.log(Number("10"));  //10
+    console.log(Number("10px"));  //NaN
+
+
+    console.log("布尔转数字------------------------------");
+    console.log(Number(true));
+    console.log(Number(false));
+
+    console.log("NaN>0,undefined>NaN------------------------------");
+    console.log(Number(null));
+    console.log(Number(undefined));
+
+
+
+    console.log("Bigint------------------------------");
+    // BigInt 去除n
+    console.log(Number(1n));
+
+    // console.log("Symbol------------------------------");
+    // // Symbol 无法转换为数字
+    // let a = Symbol("a")
+    // console.log(Number(a));
+
+    console.log("数组转number------------------------------");
+    let arr = [12]
+    console.log(Number(arr));
+
+
+    console.log("字符串转化------------------------------");
+    console.log(String(1));
+    console.log(String(NaN));
+    console.log(String(null));
+    console.log(String(undefined));
+    console.log(String(Symbol()));
+    console.log(String({}));
+
+
+    console.log("+------------------------------");
+    console.log("10" + "10");
+    console.log("10" + [10]);
+    console.log(10 + new Date());
+
+    console.log("i++------------------------------");
+
+
+    var i = 1
+    console.log(i);  //1
+
+    var a = i++
+    console.log(i);  //2
+    console.log(a);  //1
+
+    console.log("++i------------------------------");
+
+    var i = 1
+    console.log(i); //1
+
+    var a = ++i
+    console.log(i);  //2
+    console.log(a);  //2
+
+
+    console.log("2------------------------------");
+
+
+    console.log("------------------------------");
+    console.log(Number(''));
+    console.log(Number("10"));
+    console.log(Number("10px"));
+
+
+    console.log("------------------------------");
+    console.log(Number(true));
+    console.log(Number(false));
+
+    console.log("------------------------------");
+    console.log(Number(null));
+    console.log(Number(undefined));
+
+
+
+    console.log("------------------------------");
+    console.log(Number(1n));
+
+
+    console.log("------------------------------");
+    let arr1 = [12]
+    console.log(Number(arr1));
+
+
+    console.log("------------------------------");
+    console.log(String(1));
+    console.log(String(NaN));
+    console.log(String(null));
+    console.log(String(undefined));
+    console.log(String(Symbol()));
+    console.log(String({}));
+
+
+    console.log("------------------------------");
+    console.log("10" + "10");
+    console.log("10" + [10]);
+    console.log(10 + new Date());
+
+    console.log("------------------------------");
+
+
+    var i = 1
+    console.log(i);
+
+    var a = i++
+    console.log(i);
+    console.log(a);
+
+    console.log("------------------------------");
+
+    var i = 1
+    console.log(i);
+
+    var a = ++i
+    console.log(i);
+    console.log(a);
+
+
+    console.log("3------------------------------");
+
+    console.log("------------------------------");
+    console.log(Number(''));
+    console.log(Number("10"));
+    console.log(Number("10px"));
+
+
+    console.log("------------------------------");
+    console.log(Number(true));
+    console.log(Number(false));
+
+    console.log("------------------------------");
+    console.log(Number(null));
+    console.log(Number(undefined));
+
+
+
+    console.log("------------------------------");
+    console.log(Number(1n));
+
+
+    console.log("------------------------------");
+    let arr2 = [12]
+    console.log(Number(arr1));
+
+
+    console.log("------------------------------");
+    console.log(String(1));
+    console.log(String(NaN));
+    console.log(String(null));
+    console.log(String(undefined));
+    console.log(String(Symbol()));
+    console.log(String({}));
+
+
+    console.log("------------------------------");
+    console.log("10" + "10");
+    console.log("10" + [10]);
+    console.log(10 + new Date());
+
+    console.log("------------------------------");
+
+
+    var i = 1
+    console.log(i);
+
+    var a = i++
+    console.log(i);
+    console.log(a);
+
+    console.log("------------------------------");
+
+    var i = 1
+    console.log(i);
+
+    var a = ++i
+    console.log(i);
+    console.log(a);
+
+</script>
+
+</html>
