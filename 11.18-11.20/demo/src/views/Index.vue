@@ -2,12 +2,36 @@
 	<div>
 		<el-container>
 			<el-aside width="16%">
-                <!-- 侧边栏 -->
+				<!-- 侧边栏 -->
 				<sidebar></sidebar>
 			</el-aside>
 			<el-container>
-				<el-header> </el-header>
-				<el-main>Main</el-main>
+				<el-header>
+					<div v-if="$route.meta == '首页'">
+						<el-breadcrumb separator="/">
+							<el-breadcrumb-item :to="{ path: '/home' }"
+								>首页</el-breadcrumb-item
+							>
+						</el-breadcrumb>
+					</div>
+					<div v-else>
+						<el-breadcrumb separator="/">
+							<el-breadcrumb-item :to="{ path: '/home' }"
+								>首页</el-breadcrumb-item
+							>
+							<el-breadcrumb-item
+								><a href="/">数据管理</a></el-breadcrumb-item
+							>
+							<el-breadcrumb-item>{{
+								$route.meta
+							}}</el-breadcrumb-item>
+						</el-breadcrumb>
+					</div>
+                    
+				</el-header>
+				<el-main>
+					<router-view></router-view>
+				</el-main>
 			</el-container>
 		</el-container>
 	</div>
@@ -34,6 +58,8 @@
 	.el-header {
 		background-color: #eff2f7;
 		color: #333;
+		height: 60px;
+		line-height: 60px;
 	}
 
 	.el-aside {
@@ -45,5 +71,6 @@
 	.el-main {
 		background-color: #fff;
 		color: #333;
+		height: calc(100vh - 60px);
 	}
 </style>
