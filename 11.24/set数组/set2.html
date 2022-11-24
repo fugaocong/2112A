@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+</body>
+<script>
+    // 创建一个set数组
+    let arr = new Set()
+    console.log(arr);
+    // 添加一个数据
+    arr.add("什么")
+    arr.add("提升")
+    console.log(arr);
+    // 删除数据
+    arr.delete("提升")
+    console.log(arr);
+    // 判断是否拥有此数据
+    console.log(arr.has("什么"));
+    for (let key of arr) {
+        console.log(key);
+    }
+
+    // 把普通数组转化为set数组  再转换回普通数组
+    let array = [1, 32, 3, 4, 66, 2, 32, 3]
+    let res = new Set(array)
+    console.log(res);
+    let a = [...res]
+    console.log(a);
+
+    console.log(arr.keys("什么"));
+    console.log(arr.values("什么"));
+    for(let key of arr.entries()){
+        console.log(key);
+    }
+    arr.forEach((item,index)=>{
+        console.log(item + 1);
+    })
+    
+</script>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+    </head>
+    <body>
+    
+    </body>
+    <script>
+
+        // 添加 add
+        // 删除 delete
+        // 查找  has
+
+        let arr =new Set()        
+        console.log(arr);
+        // 添加
+        arr.add("学习")
+        arr.add("学习1")
+        arr.add("学习2")
+        console.log(arr);
+        arr.delete("学习")
+        console.log(arr);
+        console.log(arr.has("学习"));
+
+        let res= [...arr]
+        console.log(res);
+
+        arr.keys("学习1")
+        console.log(arr.keys("学习1"));
+
+        for(let key of arr.entries()){
+            console.log(key);
+        }
+
+        arr.forEach(item=>{
+            console.log(item + 1);
+        })
+
+    </script>
+</html>

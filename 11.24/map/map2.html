@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 创建一个map对象
+    const add = new Map()
+    console.log(add);
+    add.set("name", "疯子")
+    add.set("num", "12")
+    console.log(add);
+    add.set("change", function () {
+        console.log("努力");
+    })
+    console.log(add);
+    let key = {
+        title: "title"
+    }
+    add.set(key, ["初中", "毕业"])
+    console.log(add);
+    add.delete("name")
+    console.log(add);
+    console.log(add.has("name"));
+    console.log(add.size);
+    for (let key of add) {
+        console.log(key);
+    }
+    add.clear()
+    console.log(add);
+</script>
+
+</html>
