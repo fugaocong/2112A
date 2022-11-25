@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+</body>
+<script>
+
+
+    class Person {
+        constructor(name, gender) {//构造方法
+            this.name = name;
+            this.gender = gender;
+        }
+        get name () {//用来获取name属性。对象名.name  就会调用该方法
+            return this._name;
+        }
+
+        set name (newName) {//用来设置name属性值。对象名.name='值' 就会调用该方法
+            this._name = newName;
+        }
+        fun () {
+            console.log(`姓名：${this.name}，性别：${this.gender}`)
+        }
+    }
+
+    let p1 = new Person('张三', '男');
+    p1.fun()
+    console.log(p1);
+    console.log('编号：', p1._name)
+
+</script>
+
+</html>

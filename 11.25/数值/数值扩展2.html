@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+</body>
+<script>
+
+    function equal (a, b) {
+        if (Math.abs(a - b) < Number.EPSILON) {
+            return true
+        } else {
+            return false
+        }
+    }
+    console.log(equal(0.1 + 0.2, 0.3));
+
+    let b = 0b1010
+    let o = 0o777
+    let d = 100
+    let x = 0xff
+    console.log(b, o, d, x);
+
+    console.log(Number, isFinite(100));
+    console.log(Number, isFinite(100 / 0));
+    console.log(Number, isFinite(Infinity));
+
+    const proto = {
+        foo: "hello,"
+    }
+    const obj = {
+        foo: "6",
+        find () {
+            return super.foo
+        }
+    }
+    Object.setPrototypeOf(obj, proto)
+    console.log(obj.find());
+</script>
+
+</html>

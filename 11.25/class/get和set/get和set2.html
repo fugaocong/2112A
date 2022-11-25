@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+</body>
+<script>
+
+
+    class Person{
+        constructor(name,gender){
+            this.name = name
+            this.gender  =gender
+        }
+        get name(){
+            return this._name
+        }
+        set name(name){
+            this._name = name
+        }
+        fn(){
+            console.log(`姓名：${this.name}, 性别：${this.gender}`);
+        }
+    }
+    let p = new Person("狗蛋","男")
+    p.fn()
+    console.log(p);
+    
+
+</script>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // es5
+    function Phone (brand, price) {
+        this.brand = brand
+        this.price = price
+    }
+    Phone.prototype.call = function () {
+        console.log("我可以打视频");
+    }
+    Phone.prototype.info = function () {
+        return '(我手机的型号是：' + this.brand + ',我手机价格是' + this.price + '我手机的颜色是白色)'
+    }
+    var b = new Phone("苹果", "****")
+    let c = b.info()
+    console.log(c);
+
+    // es6 class 类
+    class Point {
+        // 构造器
+        constructor(brand, price) {
+            this.brand = brand
+            this.price = price
+        }
+        call () {
+            console.log("我可以打视频");
+        }
+        info () {
+            return '(我手机的型号是：' + this.brand + ',我手机价格是' + this.price + '我手机的颜色是白色)'
+        }
+    }
+    var f = new Phone("菠萝", "未知")
+    let e = f.info()
+    console.log(e);
+
+</script>
+
+</html>

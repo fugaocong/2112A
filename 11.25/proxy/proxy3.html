@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+
+</body>
+<script>
+    let obj = new Proxy({}, {
+        get: function (target, key, receiver) {
+            console.log(`当前的${key}`);
+            return Reflect.get(target, key, receiver)
+        },
+        set: function (target, key, value, receiver) {
+            console.log(`当前的${key}`);
+            return Reflect.set(target, key, value, receiver)
+        }
+    })
+    obj.count = 1
+    ++obj.count
+    console.log(obj);
+</script>
+
+</html>
