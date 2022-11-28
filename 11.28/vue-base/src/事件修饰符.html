@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>移动端</title>
+    <style>
+        .parent{
+            padding: 50px;
+            background-color: orange;
+        }
+        .child{
+            padding: 50px;
+            background: #000;
+        }
+        .son{
+            padding: 50px;
+            background: azure;
+        }
+        ul{
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+            overflow: auto;
+        }
+        li{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app"> 
+            <h2>欢迎来到{{name}}世界</h2>
+            <a href="./el和data的使用.html" @click.prevent="goto">点击跳转</a>
+            <div class="parent" @click="change">
+                <div class="child" @click.stop="change" >
+                    <div class="son" @click.once="change"></div>
+                </div>
+            </div>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+    </div>
+</body>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data:{
+                name:"付高聪"
+            },
+            methods:{
+                goto(e){
+                    // e.preventDefault();
+                    alert("弹框")
+                },
+                change(e){
+                    // e.stopPropagation();
+                    
+                    alert("它包括")
+                }
+            }
+        })
+    </script>
+</html>

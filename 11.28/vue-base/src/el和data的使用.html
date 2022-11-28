@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初始vue</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{name}}</p>
+        <p>期望薪资{{price}}</p>
+    </div>
+</body>
+<script>
+    /***
+     * el节点和$mount的两种写法
+      */
+    Vue.config.productionTip = false
+    /***
+     * 1.el在一进入页面的时候就会挂在页面，并加载Dom
+      */
+    // new Vue({
+    //     el:"#app",
+    //     data:{
+    //         name:"我想高薪就业"
+    //     }
+    // })
+
+    /* $mount挂载页面，可以控制挂载的时间 */
+    const vm = new Vue({
+        data: {
+            name: "我想高薪就业",
+            price:"18k",
+        }
+    })
+    vm.$mount("#app")
+    // setTimeout(() => {
+    //     vm.$mount("#app")
+    // }, 1000)
+
+</script>
+
+</html>
