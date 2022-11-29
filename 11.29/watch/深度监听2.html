@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>移动端</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>a的值是：{{num.a}}</p>
+        <button @click="num.a++">点击让a+1</button>
+        <p>b的值是：{{num.b}}</p>
+        <button @click="num.b++">点击让b+1</button>
+        <button @click="a">替换a和b</button>
+        <p>e的值是：{{num.c.d.e}}</p>
+        <button @click="num.c.d.e++">点击让e++</button>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            num: {
+                a: 1,
+                b: 2,
+                c: {
+                    d: { 
+                        e: 10
+                    }
+                }
+            }
+        },
+        methods: {
+            a () {
+                this.num.a = 666
+                this.num.b = 888
+            }
+        },
+        watch: {
+            'num.a': {
+                handler (val) {
+                    console.log(val);
+                }
+            },
+            num: {
+                deep: true,
+                handler (val) {
+                    console.log(val);
+                    console.log("num改变了");
+                }
+            }
+        }
+    })
+</script>
+
+</html>

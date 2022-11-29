@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>移动端</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div>性：<input type="text" v-model="firstName"></div>
+        <div>名：<input type="text" v-model="lastName"></div>
+        <div>全名: <input type="text" v-model="fullName"> </div>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            firstName: "付",
+            lastName: "高聪",
+            fullName: ''
+        },
+        methods: {
+
+        },
+        watch: {
+            firstName (val) {
+                console.log(val);
+                setTimeout(() => {
+                    this.fullName = val + "-" + this.lastName
+                }, 1000)
+
+            },
+            lastName (val) {
+                // console.log(val);
+                this.fullName = this.firstName + "-" + val
+            },
+            fullName: {
+                immediate: true,
+                handler (newVal, oldVal) {
+                    if (!newVal && !oldVal) {
+                        this.fullName = this.firstName + '-' + this.lastName
+                    } else {
+                        let result = newVal.split('-')
+                        this.firstName = result[0]
+                        this.lastName = result[1]
+                        this.fullName = this.firstName+ '-' +this.lastName
+                    }
+                }
+            }
+        }
+    })
+</script>
+
+</html>
