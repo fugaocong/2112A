@@ -148,6 +148,7 @@ body {
         padding: 8px 10px 8px 0;
         border-radius: 5px;
         cursor: pointer;
+        margin-top: 10px;
 
         .checkbox-btn {
             outline: none;
@@ -194,4 +195,33 @@ body {
         background-color: transparent;
         padding: 0 8px;
     }
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 100px;
+    gap: 20px;
+
+    .filters {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        .option{
+            padding: 0 0.6em;
+            border-radius: 4px;
+            transition: all 60ms ease-out;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .active{
+            color: #fff;
+    background-color: #fe7345;
+        }
+    }
+   
 }

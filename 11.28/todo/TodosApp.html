@@ -518,24 +518,38 @@
             </div>
         </div>
         <ul class="todos">
-            <li class="todos-item">
+            <!-- <li class="todos-item">
                 <button class="checkbox-btn">
                     <div class="checkbox"></div>
                 </button>
                 <p class="content">12213</p>
-                <button class="close-btn"></button>
-                <svg class="svg-inline--fa fa-times fa-w-11 close" aria-hidden="true" focusable="false"
-                    data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 352 512" data-v-132cabf7="">
-                    <path class="" fill="currentColor"
-                        d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z">
-                    </path>
-                </svg>
-            </li>
+                <button class="close-btn">
+                    <svg class="svg-inline--fa fa-times fa-w-11 " aria-hidden="true" focusable="false" data-prefix="fas"
+                        data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512">
+                        <path class="close" fill="currentColor"
+                            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z">
+                        </path>
+                    </svg>
+                </button>
+            </li> -->
         </ul>
-        <div class="empty-todos" data-v-132cabf7="" data-v-167ca4dc=""><svg class="svg-inline--fa fa-clipboard-check fa-w-12 icon" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="clipboard-check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" data-v-132cabf7=""><path class="" fill="currentColor" d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm121.2 231.8l-143 141.8c-4.7 4.7-12.3 4.6-17-.1l-82.6-83.3c-4.7-4.7-4.6-12.3.1-17L99.1 285c4.7-4.7 12.3-4.6 17 .1l46 46.4 106-105.2c4.7-4.7 12.3-4.6 17 .1l28.2 28.4c4.7 4.8 4.6 12.3-.1 17z"></path></svg><span class="msg" data-v-132cabf7="">Congrat, you have no more tasks to do</span></div>
+        <ul class="todos"></ul>
+        <ul class="todos"></ul>
+        <!-- 数据为空时显示 -->
+        <footer class="show">
+            <svg class="svg-inline--fa fa-clipboard-check fa-w-12 icon" aria-hidden="true" focusable="false"
+                data-prefix="fas" data-icon="clipboard-check" role="img" xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 384 512">
+                <path class="" fill="currentColor"
+                    d="M336 64h-80c0-35.3-28.7-64-64-64s-64 28.7-64 64H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h288c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48zM192 40c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24zm121.2 231.8l-143 141.8c-4.7 4.7-12.3 4.6-17-.1l-82.6-83.3c-4.7-4.7-4.6-12.3.1-17L99.1 285c4.7-4.7 12.3-4.6 17 .1l46 46.4 106-105.2c4.7-4.7 12.3-4.6 17 .1l28.2 28.4c4.7 4.8 4.6 12.3-.1 17z">
+                </path>
+            </svg>
+            <span class="msg">Congrat, you have no more tasks to do</span>
+        </footer>
+
+
         <div class="options">
-            <span class="num">item left</span>
+            <span class="num"></span>
             <div class="filters">
                 <span class="option active">All</span>
             </div>
@@ -552,6 +566,9 @@
     let submit = document.querySelector(".submit-but")
     // 获取ul
     let ul = document.querySelector("ul")
+    // 获取数据为空时显示的提示
+    let footer = document.querySelector("footer")
+    let num = document.querySelector(".num")
     // 获取尾部
     var options = document.querySelector(".options")
     // input回车事件
@@ -561,6 +578,8 @@
                 return false
             } else {
                 add()
+                toggle()
+                foot()
                 input.value = ""
             }
         }
@@ -571,48 +590,58 @@
             return false
         } else {
             add()
+            toggle()
+            foot()
             input.value = ""
         }
 
     }
     // 状态切换
     function toggle () {
-        let toggle1 = document.querySelectorAll(".checkbox-btn")
-        for (let i = 0; i < toggle1.length; i++) {
-            toggle1[i].onclick = function () {
-                // 父级添加类名
-                this.parentNode.classList.add("completed")
-                this.removeChild(this.childNodes[0])
-                this.innerHTML = `<svg class="svg-inline--fa fa-check fa-w-16 check" aria-hidden="true" focusable="false"
-                        data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 512 512" data-v-132cabf7="">
-                        <path class="" fill="currentColor"
-                            d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
-                        </path>
-                    </svg>`
-                this.classList.remove("checkbox-btn")
-                this.classList.add("check-btn")
-            }
-        }
-
-        let toggle2 = document.querySelectorAll(".check-btn")
-        console.log(toggle2);
-        for (let i = 0; i < toggle2.length; i++) {
-            toggle2[i].onclick = function () {
-                // 父级添加类名
-                this.parentNode.classList.remove("completed")
-                this.removeChild(this.childNodes[0])
-                this.innerHTML = `<div class="checkbox"></div>`
-                this.classList.remove("check-btn")
-                this.classList.add("checkbox-btn")
+        // 获取所有的li元素
+        let li = document.querySelectorAll("li")
+        // console.log(li);
+        for (let i = 0; i < li.length; i++) {
+            // 给li里面的按钮加事件
+            li[i].children[0].onclick = function () {
+                // 判断父级有没有选中的类名
+                if (li[i].className.indexOf("completed") > -1) {
+                    // 有的话删除button样式
+                    this.classList.remove('check-btn')
+                    // 重新添加
+                    this.classList.add("checkbox-btn")
+                    // 给父级删除选中的样式
+                    this.parentNode.classList.remove("completed")
+                    // 删除第一个子节点
+                    this.firstChild.remove()
+                    // 添加一个子节点
+                    this.innerHTML = `
+                    <div class="checkbox"></div>
+                    `
+                } else {
+                    // console.log(this);
+                    // 有选中类名的话删除button当前的类名
+                    this.classList.remove('checkbox-btn')
+                    // 新添加一个类名
+                    this.classList.add("check-btn")
+                    // 给父级添加选中的类名
+                    this.parentNode.classList.add("completed")
+                    // 删除第一个子节点
+                    this.firstChild.remove()
+                    // 添加一个子节点
+                    this.innerHTML = `
+                    <svg class="svg-inline--fa fa-check fa-w-16 check" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-v-132cabf7="">
+                        <path class="" fill="currentColor" d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"></path>
+                    </svg>
+                    `
+                }
             }
         }
 
     }
     toggle()
-
+    // 添加
     function add () {
-
         // 添加一个li
         let li = document.createElement("li")
         li.classList.add("todos-item")
@@ -620,55 +649,82 @@
                             <div class="checkbox"></div>
                         </button>
                         <p class="content">${input.value}</p>
-                        <button class="close-btn"></button>
-                        <svg class="svg-inline--fa fa-times fa-w-11 close" aria-hidden="true" focusable="false"
-                        data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 352 512" data-v-132cabf7="">
-                            <path class="" fill="currentColor"
-                                d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z">
-                            </path>
-                        </svg>`
+                        <button class="close-btn">
+                            <svg class="svg-inline--fa fa-times fa-w-11 close" aria-hidden="true" focusable="false"
+                                    data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 352 512" data-v-132cabf7="">
+                                <path class="" fill="currentColor"
+                                    d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z">
+                                </path>
+                            </svg>
+                        </button>
+                        `
         ul.insertBefore(li, ul.children[0])
-        toggle()
     }
-
-    var lis = document.querySelectorAll('.option');
-    var models = document.querySelectorAll('.todos');
-    // 遍历所有选项卡
-    for (var i = 0, len = lis.length; i < len; i++) {
-        // 设置当前元素的index索引值
-        lis[i].setAttribute('data-index', i);
-        // 绑定点击事件
-        lis[i].onclick = function () {
-            // 将所有选项卡边框设置透明
-            for (var j = 0, len = lis.length; j < len; j++) {
-                lis[j].style.backgroundColor = 'transparent';
-            }
-            // 将所有选项卡内容设置隐藏
-            for (var j = 0, len = models.length; j < len; j++) {
-                models[j].style.display = 'none';
-            }
-            // 设置当前被点击选项卡边框色
-            this.style.backgroundColor = '#fe7345';
-            this.style.borderRadius = '4px';
-            this.style.padding= `0 9px`; 
-            // 获取被点击选项卡索引
-            var index = this.getAttribute('data-index');
-            // 显示被点击选项卡所匹配内容
-            models[index].style.display = 'block';
+    // 删除事件
+    ul.onclick = function (e) {
+        if (e.target.className == "close-btn") {
+            // console.log(e.target);
+            e.target.parentNode.remove()
+        }
+        foot()
+    }
+    // 底部的显示与隐藏
+    function foot () {
+        if (ul.children.length != '') {
+            footer.style.display = "none"
+        } else {
+            footer.style.display = "block"
         }
     }
+    foot()
 
-    options.onclick = function (e) {
-        if (e.target.innerText == 'Clearcompleted') {
-            // console.log(e.target.innerText);
-            for (let i = 0; i < ul.children.length; i++) {
-                console.log(i);
-                ul.children[i].remove()
+    // function nums(){
+    //     let sum = 0
+    //     for(let i=0;i<ul.children.length;i++){
+    //         if(ul.children[i].className("completed")){
+    //             sum++
+    //             return sum
+    //         }
+    //         num.innerText = `{{sum}}个`
+    //     }
+        
+    // }
+    // nums()
 
+    // top切换
+    function tops () {
+        var lis = document.querySelectorAll('.option');
+        var models = document.querySelectorAll('.todos');
+        for (let i = 0; i < lis.length; i++) {
+            lis[i].setAttribute("index", i)
+            lis[i].onclick = function () {
+                let index = this.getAttribute("index")
+                for (let j = 0; j < lis.length; j++) {
+                    lis[j].classList.remove("active")
+                    lis[index].classList.add("active")
+                }
+                for (let k = 0; k < models.length; k++) {
+                    models[k].style.display = "none"
+                    models[index].style.display = "block"
+                }
             }
         }
     }
+    tops()
+
+
+    // 选中删除
+    // options.onclick = function (e) {
+    //     if (e.target.innerText == 'Clearcompleted') {
+    //         // console.log(e.target.innerText);
+    //         for (let i = 0; i < ul.children.length; i++) {
+    //             console.log(i);
+    //             ul.children[i].remove()
+
+    //         }
+    //     }
+    // }
 
 
 

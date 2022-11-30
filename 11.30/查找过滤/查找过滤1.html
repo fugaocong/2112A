@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>移动端</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" @input="search" v-model="searchName" placeholder="输入文字查找">
+        <ul>
+            <li v-for="i in copyList" :key="i.id">
+                {{i.name}}-{{i.age}}-{{i.sex}}
+            </li>
+        </ul>
+    </div>
+</body>
+<!-- 需求
+            1.输入框
+            2.渲染数据
+            3.过滤搜索是精确还是模糊
+            4.防抖节流的存在与否
+            5数据的拷贝问题
+
+    --> 
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            searchName: "",
+            list: [
+                { id: "001", name: "小龙女", age: 26, sex: "女" },
+                { id: "002", name: "杨过", age: 18, sex: "男" },
+                { id: "003", name: "黄蓉", age: 18, sex: "女" },
+                { id: "004", name: "天山童姥", age: 666, sex: "女" },
+            ],
+            copyList: []
+        },
+        methods: {
+            search () {
+                this.copyList = this.list.filter(i => {
+                    return i.name.includes(this.searchName)
+                })
+            }
+        },
+        created() {
+            this.search()
+        },
+    })
+</script>
+
+</html>

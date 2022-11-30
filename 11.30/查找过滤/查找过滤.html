@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>移动端</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h4>人员列表</h4>
+        <input @input="handleInputName" v-model="searchName" placeholder="输入名字查找">
+        <ul>
+            <li v-for="item in copyList" :key="item.id">
+                {{item.name}}-{{item.age}}-{{item.sex}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            searchName: '',
+            list: [
+                { id: "001", name: "东邪", age: 19, sex: "男" },
+                { id: "002", name: "郭靖", age: 19, sex: "男" },
+                { id: "003", name: "黄蓉", age: 19, sex: "女" },
+                { id: "004", name: "西毒", age: 19, sex: "男" }
+            ],
+            copyList: []
+        },
+        methods: {
+            handleInputName () {
+                this.copyList = this.list.filter(i => {
+                    return i.name.includes(this.searchName)
+                })
+            }
+        },
+        created() {
+            this.handleInputName()
+        },
+    })
+</script>
+
+</html>

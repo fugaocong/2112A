@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>移动端</title>
+    <script src="../vue.js"></script>
+    <script src="../dayjs.min.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 过滤器： -->
+        <h1> 现在的时间 ：{{time | filterTime}}</h1>
+        <h2>全局过滤器：{{time | formate}}</h2>
+
+    </div>
+</body>
+<script>
+    Vue.filter('formate',function(val,str="YYYY年MM月DD日 HH:mm:ss"){
+        return dayjs(val).format(str)
+    })
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            time: new Date().valueOf()
+        },
+        filters:{
+            filterTime(val,str="YYYY年MM月DD日 HH:mm:ss"){
+                return dayjs(val).format(str)
+            }
+        }
+    })
+</script>
+
+</html>

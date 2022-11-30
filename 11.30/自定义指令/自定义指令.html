@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>移动端</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div v-big="n"></div>
+        <input type="text" v-fbind="n">
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            n: 1
+        },
+        methods: {
+
+        },
+        directives: {
+            big(ele,binding){
+                console.log(ele);
+                console.log(binding);
+                ele.innerText = binding.value*10
+            },
+            fbind:{
+                bind(element,binding){
+                    element.value = binding.value
+                },
+                inserted(element,binding){
+                    element.focus()
+                },
+                updated(element,binding) {
+                    element.value = binding.value
+                    console.log(1);
+                },
+            }
+        }
+    })
+</script>
+
+</html>

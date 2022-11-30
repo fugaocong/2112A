@@ -518,6 +518,20 @@
             </div>
         </div>
         <ul class="todos">
+            <li class="todos-item">
+                <button class="checkbox-btn">
+                    <div class="checkbox"></div>
+                </button>
+                <p class="content">12213</p>
+                <button class="close-btn"></button>
+                <svg class="svg-inline--fa fa-times fa-w-11 close" aria-hidden="true" focusable="false"
+                    data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 352 512" data-v-132cabf7="">
+                    <path class="" fill="currentColor"
+                        d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z">
+                    </path>
+                </svg>
+            </li>
             <li class="todos-item completed">
                 <!-- 切换状态 -->
                 <button class="check-btn ">
@@ -538,24 +552,13 @@
                         d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z">
                     </path>
                 </svg>
-
-            </li>
-            <li class="todos-item">
-                <button class="checkbox-btn">
-                    <div class="checkbox"></div>
-                </button>
-                <p class="content">12213</p>
-                <button class="close-btn"></button>
-                <svg class="svg-inline--fa fa-times fa-w-11 close" aria-hidden="true" focusable="false"
-                data-prefix="fas" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 352 512" data-v-132cabf7="">
-                    <path class="" fill="currentColor"
-                        d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z">
-                    </path>
-                </svg>`
             </li>
         </ul>
-        <footer>
+        <footer class="options">
+            <span></span>
+            <div class="filters">
+                <span class="option active">All</span>
+            </div>
         </footer>
     </div>
 </body>
@@ -566,7 +569,6 @@
     let submit = document.querySelector(".submit-but")
     // 获取ul
     let ul = document.querySelector("ul")
-    let toggle = document.querySelector(".checkbox-btn")
     // input回车事件
     input.addEventListener("keydown", function (e) {
         if (e.keyCode == 13) {
@@ -580,24 +582,55 @@
     })
     // sub添加事件
     submit.onclick = function () {
-        if(input.value==""){
+        if (input.value == "") {
             return false
-        }else{
+        } else {
             add()
-        input.value = ""
+            input.value = ""
         }
-        
+
     }
     // 状态切换
-    toggle.onclick = function (e) {
-        // e.parentNode
-        console.log( e.path[2]);
-    }
-    function add () {
+    function toggle () {
+        let toggle1 = document.querySelectorAll(".checkbox-btn")
+        for (let i = 0; i < toggle1.length; i++) {
+            toggle1[i].onclick = function () {
+                // 父级添加类名
+                this.parentNode.classList.add("completed")
+                this.removeChild(this.childNodes[0])
+                this.innerHTML = `<svg class="svg-inline--fa fa-check fa-w-16 check" aria-hidden="true" focusable="false"
+                        data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512" data-v-132cabf7="">
+                        <path class="" fill="currentColor"
+                            d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z">
+                        </path>
+                    </svg>`
+                this.classList.remove("checkbox-btn")
+                this.classList.add("check-btn")    
+            }
+        }
 
+        let toggle2 = document.querySelectorAll(".check-btn")
+        console.log(toggle2);
+        for(let i =0;i<toggle2.length;i++){
+            toggle2[i].onclick = function () {
+                // 父级添加类名
+                this.parentNode.classList.remove("completed")
+                this.removeChild(this.childNodes[0])
+                this.innerHTML = `<div class="checkbox"></div>`
+                this.classList.remove("check-btn")
+                this.classList.add("checkbox-btn")    
+            }
+        }
+
+    }
+    toggle()
+
+    function add () {
+        
         // 添加一个li
         let li = document.createElement("li")
-        li.className = "todos-item"
+        li.classList.add("todos-item")
         li.innerHTML = ` <button class="checkbox-btn" >
                             <div class="checkbox"></div>
                         </button>
@@ -611,10 +644,12 @@
                             </path>
                         </svg>`
         ul.insertBefore(li, ul.children[0])
+        toggle()
     }
 
 
-        
+    
+
 
 
 </script>

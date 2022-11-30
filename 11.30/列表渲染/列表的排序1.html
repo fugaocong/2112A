@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>移动端</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="ageAscending">年龄升序</button>
+        <button @click="ageDescending">年龄降序</button>
+        <button @click="restitution">原顺序</button>
+        <ul>
+            <li v-for="(item, index) in list" :key="item.id">
+                {{item.name}}--{{item.age}}--{{item.sex}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data () {
+            return {
+                list: [
+                    { id: "001", name: "东邪", age: 23, sex: "男" },
+                    { id: "002", name: "郭靖", age: 20, sex: "男" },
+                    { id: "003", name: "黄蓉", age: 19, sex: "女" },
+                    { id: "004", name: "西毒", age: 22, sex: "男" }
+                ],
+            }
+        },
+        methods: {
+            ageAscending(){
+                this.list.sort((a,b)=>{
+                    return a.age - b.age
+                })
+            },
+            ageDescending(){
+                this.list.sort((a,b)=>{
+                    return b.age - a.age
+                })
+            },
+            restitution(){
+                this.list.sort((a,b)=>{
+                    return a.id - b.id
+                })
+            }
+        }
+    })
+</script>
+
+</html>

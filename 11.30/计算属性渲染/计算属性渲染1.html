@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>移动端</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="searchName">
+        <ul>
+            <li v-for="i in copyList" :key="i.id">
+                {{i.name}}-{{i.age}}-{{i.sex}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data () {
+            return {
+                searchName: "",
+                list: [
+                    { id: "001", name: "小龙女", age: 26, sex: "女" },
+                    { id: "002", name: "杨过", age: 18, sex: "男" },
+                    { id: "003", name: "黄蓉", age: 18, sex: "女" },
+                    { id: "004", name: "天山童姥", age: 666, sex: "女" },
+                ],
+            }
+        },
+        computed:{
+            copyList(){
+                return this.list.filter(i=>i.name.indexOf(this.searchName) !==-1)
+            }
+        }
+    })
+</script>
+
+</html>
