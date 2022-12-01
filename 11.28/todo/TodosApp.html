@@ -512,29 +512,15 @@
                 <div class="form-input">
                     <input class="_input" type="text" autofocus placeholder="Add new todo...">
                 </div>
-                <button type="submit" class="submit-but">
-                    <span>Submit</span>
+                <button type="submit" onmousedown="down()" onmouseup="up()" class="submit-but">
+                    <span class="span">Submit</span>
                 </button>
             </div>
         </div>
-        <ul class="todos">
-            <!-- <li class="todos-item">
-                <button class="checkbox-btn">
-                    <div class="checkbox"></div>
-                </button>
-                <p class="content">12213</p>
-                <button class="close-btn">
-                    <svg class="svg-inline--fa fa-times fa-w-11 " aria-hidden="true" focusable="false" data-prefix="fas"
-                        data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512">
-                        <path class="close" fill="currentColor"
-                            d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z">
-                        </path>
-                    </svg>
-                </button>
-            </li> -->
+        <ul class="todos all">
+
         </ul>
-        <ul class="todos"></ul>
-        <ul class="todos"></ul>
+
         <!-- 数据为空时显示 -->
         <footer class="show">
             <svg class="svg-inline--fa fa-clipboard-check fa-w-12 icon" aria-hidden="true" focusable="false"
@@ -552,9 +538,9 @@
             <span class="num"></span>
             <div class="filters">
                 <span class="option active">All</span>
+                <span class="option">Acitve</span>
+                <span class="option">Completed</span>
             </div>
-            <span class="option">Acitve</span>
-            <span class="option">Completed</span>
             <span class="option">Clearcompleted</span>
         </div>
     </div>
@@ -569,6 +555,7 @@
     // 获取数据为空时显示的提示
     let footer = document.querySelector("footer")
     let num = document.querySelector(".num")
+    let span = document.querySelector(".span")
     // 获取尾部
     var options = document.querySelector(".options")
     // input回车事件
@@ -580,27 +567,34 @@
                 add()
                 toggle()
                 foot()
+                nums()
                 input.value = ""
             }
         }
     })
     // sub添加事件
-    submit.onclick = function () {
+    function down () {
+        span.classList.add("span1")
+        submit.style.transform = "rotate(0deg)";
+    }
+    function up () {
+        //鼠标释放时让lock异步执行，setTimeout因为异步任务，所以会放到任务队列最后执行，让click事件先执行了
+        span.classList.remove("span1")
+        submit.style.transform = "rotate(4deg)";
         if (input.value == "") {
             return false
         } else {
             add()
-            toggle()
             foot()
             input.value = ""
+            toggle()
+            nums()
         }
-
     }
+
     // 状态切换
     function toggle () {
-        // 获取所有的li元素
         let li = document.querySelectorAll("li")
-        // console.log(li);
         for (let i = 0; i < li.length; i++) {
             // 给li里面的按钮加事件
             li[i].children[0].onclick = function () {
@@ -619,7 +613,6 @@
                     <div class="checkbox"></div>
                     `
                 } else {
-                    // console.log(this);
                     // 有选中类名的话删除button当前的类名
                     this.classList.remove('checkbox-btn')
                     // 新添加一个类名
@@ -637,7 +630,8 @@
                 }
             }
         }
-
+        foot()
+        nums()
     }
     toggle()
     // 添加
@@ -660,6 +654,7 @@
                         </button>
                         `
         ul.insertBefore(li, ul.children[0])
+        foot()
     }
     // 删除事件
     ul.onclick = function (e) {
@@ -668,63 +663,115 @@
             e.target.parentNode.remove()
         }
         foot()
+        nums()
     }
     // 底部的显示与隐藏
     function foot () {
         if (ul.children.length != '') {
             footer.style.display = "none"
+            options.style.display = ""
         } else {
-            footer.style.display = "block"
+            footer.style.display = ""
+            options.style.display = "none"
         }
     }
     foot()
+    // 计算所有没选中的数据的数量
+    function nums () {
+        let li = document.querySelectorAll("li")
+        let status = document.querySelectorAll(".completed")
+        let num = document.querySelector(".num")
+        let sum = li.length - status.length
+        num.innerHTML = `${sum} item left`
+    }
+    nums()
 
-    // function nums(){
-    //     let sum = 0
-    //     for(let i=0;i<ul.children.length;i++){
-    //         if(ul.children[i].className("completed")){
-    //             sum++
-    //             return sum
-    //         }
-    //         num.innerText = `{{sum}}个`
-    //     }
-        
-    // }
-    // nums()
+    //   选中删除
+    function delAll () {
+        var lis = document.querySelectorAll('.option');
+        lis[3].onclick = function () {
+            let delsAll = document.querySelectorAll(".completed")
+            for (let i = 0; i < delsAll.length; i++) {
+                delsAll[i].remove()
+                foot()
+                // lis[0].classList.add("active")
+                // lis[1].classList.remove("active")
+                // lis[2].classList.remove("active")
+                // lis[3].classList.remove("active")
+                // lis[1].style.display = ""
+                // lis[2].style.display = ""
+            }
+            tops()
+        }
+
+    }
+    delAll()
 
     // top切换
     function tops () {
+        // 获取所有的切换标签
         var lis = document.querySelectorAll('.option');
-        var models = document.querySelectorAll('.todos');
+        // 循环所有的切换按钮
         for (let i = 0; i < lis.length; i++) {
+            // 给切换按钮加下标
             lis[i].setAttribute("index", i)
+            // 做点击事件
             lis[i].onclick = function () {
                 let index = this.getAttribute("index")
                 for (let j = 0; j < lis.length; j++) {
+                    // 删除要离开的标签的选中状态
                     lis[j].classList.remove("active")
+                    // 给选中的标签加类名
                     lis[index].classList.add("active")
                 }
-                for (let k = 0; k < models.length; k++) {
-                    models[k].style.display = "none"
-                    models[index].style.display = "block"
+                if (index == 0) {
+                    let li = document.querySelectorAll("li")
+                    for (let i = 0; i < li.length; i++) {
+                        li[i].style.display = ""
+                    }
                 }
+                if (index == 1) {
+                    let li = document.querySelectorAll("li")
+                    for (let i = 0; i < li.length; i++) {
+                        li[i].style.display = ""
+                        if (li[i].className.indexOf("completed") != -1) {
+                            li[i].style.display = "none"
+                        }
+                    }
+                }
+                if (index == 2) {
+                    let li = document.querySelectorAll("li")
+                    for (let i = 0; i < li.length; i++) {
+                        li[i].style.display = ""
+                        if (li[i].className.indexOf("completed") == -1) {
+                            li[i].style.display = "none"
+                        }
+                    }
+                }
+                // let li = document.querySelectorAll("li")
+                // for (let i = 0; i < li.length; i++) {
+                //     if (li[i].className.indexOf("completed") == -1) {
+                //         lis[1].style.display = "none"
+                //         lis[2].style.display = "none"
+                //         lis[3].style.display = "none"
+                //     }
+                // }
+                // for (let i = 0; i < li.length; i++) {
+                //     if (li[i].className.indexOf("completed") != -1) {
+                //         lis[1].style.display = ""
+                //         lis[2].style.display = ""
+                //         lis[3].style.display = ""
+                //     }
+                // }
+
             }
         }
+        delAll()
     }
     tops()
 
 
-    // 选中删除
-    // options.onclick = function (e) {
-    //     if (e.target.innerText == 'Clearcompleted') {
-    //         // console.log(e.target.innerText);
-    //         for (let i = 0; i < ul.children.length; i++) {
-    //             console.log(i);
-    //             ul.children[i].remove()
 
-    //         }
-    //     }
-    // }
 
 
 

@@ -114,8 +114,9 @@ body {
                 border-radius: inherit;
                 background-color: #fff;
             }
-
-
+            .span1{
+                margin-bottom: -2px;
+            }
         }
 
         .submit-but:before {
@@ -181,10 +182,19 @@ body {
     }
 
     .completed {
+        transform: rotateX(-180deg);
+        transition: all .5s;
         background-color: #fe7345;
+        -webkit-animation: flipInX-132cabf7 .75s ease-in-out both;
         animation: flipInX-132cabf7 .75s ease-in-out both;
         text-decoration: line-through;
         color: #fff;
+        .content{
+            transform: rotateX(-180deg);
+        }
+        .check{
+            transform: rotateX(-180deg);
+        }
     }
 
     .check-btn {
@@ -221,9 +231,12 @@ body {
         -ms-user-select: none;
         user-select: none;
     }
+    .option:hover{
+        color: #fff;
+        background-color: #fe7345;
+    }
 
     .active {
-       
         color: #fff;
         background-color: #fe7345;
     }
