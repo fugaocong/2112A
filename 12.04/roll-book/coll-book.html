@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=0">
+    <title>移动端</title>
+    <link rel="stylesheet" href="./css/coll-book.min.css">
+</head>
+
+<body>
+    <div class="audio">
+        <audio preload="auto" controls src="./music/阿里郎 - 忘记你太难 (温情版).mp3"></audio>
+    </div>
+    <header>
+        <h1>点名表</h1>
+    </header>
+
+
+    <div class="currentTime"></div>
+    <div class="content">
+        <div class="left">
+            <ul></ul>
+        </div>
+        <div class="right">
+            <div class="top">
+                <h1>天选之人：</h1>
+                <span></span>
+            </div>
+            <div class="bottom">
+                <button onclick="oneStudent(event)" class="one">单人点名</button>
+                <button onclick="twoStudent(event)" class="two">双人点名</button>
+                <button onclick="boyOrGirlStudent(0,event)" class="man">男生点名</button>
+                <button onclick="boyOrGirlStudent(1,event)" class="woman">女生点名</button>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+<script src="./js/coll-book.js"></script>
+
+</html>
