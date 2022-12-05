@@ -14,11 +14,11 @@ export default {
   components: {
     HelloWorld
   },
-  data: {
-    return: {}
+  data: function () {
+    return {
+      return: {}
+    }
   },
-  methods: {
-    
-  }
+  methods: {}
 }
 </script>
