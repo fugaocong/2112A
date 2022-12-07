@@ -1,5 +1,21 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+    <el-button type="primary">按钮</el-button>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {}
+  },
+  methods: {},
+  created() {},
+  mounted() {},
+  components: {},
+  computed: {},
+  watch: {}
+}
+</script>
+
+<style lang="scss" scoped></style>
