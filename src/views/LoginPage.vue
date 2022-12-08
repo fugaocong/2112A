@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import router from "@/router"
 import { loginList } from "../utils/api"
 export default {
   data() {
@@ -30,7 +31,8 @@ export default {
   methods: {
     login() {
       loginList({ params: this.form }).then((res) => {
-        console.log(res)
+        // console.log(res)
+        this.$router.push("/WelcomePage")
       })
       // 'http://heima.9yuecloud.com:9988/api/private/v1/api/login
       // this.$http({ method: "post", data: this.form, url: "/api/login" }).then((res) => {

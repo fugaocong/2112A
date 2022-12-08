@@ -1,4 +1,6 @@
 const { defineConfig } = require("@vue/cli-service")
+console.log(process.env.VUE_APP_MOCK_ENABLE)
+let target = process.env.VUE_APP_MOCK_ENABLE === "true" ? "http://localhost:8090" : process.env.VUE_APP_CONSOLE_URL
 module.exports = defineConfig({
   /**生产环境的构造 **/
   productionSourceMap: false,
@@ -20,12 +22,12 @@ module.exports = defineConfig({
     open: false,
     /**本地端口号的配置 */
     proxy: {
-      "/api": {
+      [process.env.VUE_APP_BASE_API]: {
         changeOrigin: true,
         secure: false,
-        target: `http://localhost:8090`,
+        target: target,
         pathRewrite: {
-          "^/api": ""
+          ["^" + process.env.VUE_APP_BASE_API]: ""
         }
       }
     }

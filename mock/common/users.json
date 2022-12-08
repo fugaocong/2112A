@@ -1,0 +1,102 @@
+{
+	"data": {
+		"total": 10,
+		"pagenum": 1,
+		"users": [
+			{
+				"id": 500,
+				"role_name": "超级管理员",
+				"username": "admin",
+				"create_time": 1486720211,
+				"mobile": null,
+				"email": null,
+				"mg_state": true
+			},
+			{
+				"id": 1004,
+				"role_name": "超级管理员",
+				"username": "bn",
+				"create_time": 1670483585,
+				"mobile": null,
+				"email": null,
+				"mg_state": false
+			},
+			{
+				"id": 1006,
+				"role_name": "超级管理员",
+				"username": "小黑子",
+				"create_time": 1670483978,
+				"mobile": null,
+				"email": null,
+				"mg_state": true
+			},
+			{
+				"id": 1007,
+				"role_name": "超级管理员",
+				"username": "爱坤篮球",
+				"create_time": 1670484062,
+				"mobile": "66666",
+				"email": "66666",
+				"mg_state": true
+			},
+			{
+				"id": 1009,
+				"role_name": "超级管理员",
+				"username": "qweqweqwe",
+				"create_time": 1670485854,
+				"mobile": null,
+				"email": null,
+				"mg_state": false
+			},
+			{
+				"id": 1011,
+				"role_name": "超级管理员",
+				"username": "我是柳少",
+				"create_time": 1670486506,
+				"mobile": null,
+				"email": null,
+				"mg_state": true
+			},
+			{
+				"id": 1012,
+				"role_name": "超级管理员",
+				"username": "我华子实名看妹",
+				"create_time": 1670486509,
+				"mobile": "12123213221",
+				"email": "112",
+				"mg_state": true
+			},
+			{
+				"id": 1013,
+				"role_name": "超级管理员",
+				"username": "炜哥666",
+				"create_time": 1670486601,
+				"mobile": "",
+				"email": "",
+				"mg_state": false
+			},
+			{
+				"id": 1014,
+				"role_name": "超级管理员",
+				"username": "213",
+				"create_time": 1670486664,
+				"mobile": "13413131313",
+				"email": "231@qq.com",
+				"mg_state": false
+			},
+			{
+				"id": 1016,
+				"role_name": "超级管理员",
+				"username": "111",
+				"create_time": 1670487031,
+				"mobile": null,
+				"email": null,
+				"mg_state": false
+			}
+		]
+	},
+	"meta": {
+		"msg": "获取管理员列表成功",
+		"status": 200
+	}
+}
