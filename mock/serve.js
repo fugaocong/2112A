@@ -10,6 +10,12 @@ const rolesData = require("./common/roles.json")
 const authorityData = require("./common/authority.json")
 /**权限数据 */
 const usersData = require("./common/users.json")
+/**商品数据 */
+const goodsData = require("./common/goods.json")
+/**订单数据 */
+const ordersData = require("./common/orders.json")
+/**商品分类数据 */
+const categoriesData = require("./common/categories.json")
 
 let app = express()
 /**登陆页面的数据 */
@@ -49,6 +55,30 @@ app.use("/users", function (req, res) {
   res.json(
     Mock.mock({
       ...usersData
+    })
+  )
+})
+/**获取商品数据 */
+app.use("/goods", function (req, res) {
+  res.json(
+    Mock.mock({
+      ...goodsData
+    })
+  )
+})
+/**获取订单数据 */
+app.use("/orders", function (req, res) {
+  res.json(
+    Mock.mock({
+      ...ordersData
+    })
+  )
+})
+/**获取商品分类数据 */
+app.use("/categories", function (req, res) {
+  res.json(
+    Mock.mock({
+      ...categoriesData
     })
   )
 })

@@ -54,5 +54,30 @@ async function usersList(params) {
   let { data } = await http.get(`${addKeyword}/users/+${params}`)
   return data
 }
+/**获取商品数据 */
+async function goodsList(params) {
+  let { data } = await http.get(`${addKeyword}/goods/+${params}`)
+  return data
+}
+/**获取商品数据 */
+async function ordersList(params) {
+  let { data } = await http.get(`${addKeyword}/orders/+${params}`)
+  return data
+}
+/**获取商品分类数据 */
+async function categoriesList(params) {
+  let { data } = await http.get(`${addKeyword}/categories/+${params}`)
+  return data
+}
 
-export { loginList, sidebarList, getRolesList, addRolesList, authorityList, usersList }
+export {
+  loginList,
+  sidebarList,
+  getRolesList,
+  addRolesList,
+  authorityList,
+  usersList,
+  goodsList,
+  ordersList,
+  categoriesList
+}

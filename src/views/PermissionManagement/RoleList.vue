@@ -37,7 +37,7 @@
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
             <el-button type="primary" icon="el-icon-edit" size="small" @click="openEdit(scope.row)">编辑</el-button>
-            <el-button type="danger" icon="el-icon-delete" size="small">删除</el-button>
+            <el-button type="danger" icon="el-icon-delete" size="small" @click="del(scope.row)">删除</el-button>
             <el-button type="warning" icon="el-icon-setting" size="small">分配权限</el-button>
           </template>
         </el-table-column>
@@ -136,6 +136,28 @@ export default {
         roleName: "",
         roleDesc: ""
       }
+    },
+    // 删除
+    del(row) {
+      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          })
+          let index = this.tableData.findIndex((i) => i.id == row.id)
+          this.tableData.splice(index, 1)
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          })
+        })
     }
   },
   created() {

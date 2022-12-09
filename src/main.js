@@ -15,6 +15,10 @@ Vue.use(ElementUI)
 import http from "./utils/httpRequest"
 Vue.prototype.$http = http
 
+// 引入树形表格
+import ZkTable from "vue-table-with-tree-grid"
+Vue.use(ZkTable)
+
 Vue.config.productionTip = false
 
 new Vue({

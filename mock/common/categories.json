@@ -1,0 +1,415 @@
+{
+	"data": {
+		"total": 9,
+		"pagenum": 0,
+		"pagesize": 20,
+		"result": [
+			{
+				"cat_id": 1402,
+				"cat_name": "少爷作业写完了吗",
+				"cat_pid": 0,
+				"cat_level": 0,
+				"cat_deleted": false,
+				"children": [
+					{
+						"cat_id": 1410,
+						"cat_name": "功能箱包",
+						"cat_pid": 1402,
+						"cat_level": 1,
+						"cat_deleted": false,
+						"children": [
+							{
+								"cat_id": 1421,
+								"cat_name": "背包",
+								"cat_pid": 1410,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1422,
+								"cat_name": "旅行包",
+								"cat_pid": 1410,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1423,
+								"cat_name": "胸包",
+								"cat_pid": 1410,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1424,
+								"cat_name": "登山包",
+								"cat_pid": 1410,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1425,
+								"cat_name": "腰包",
+								"cat_pid": 1410,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1426,
+								"cat_name": "箱包配件",
+								"cat_pid": 1410,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1608,
+								"cat_name": "5555",
+								"cat_pid": 1410,
+								"cat_level": 2,
+								"cat_deleted": false
+							}
+						]
+					},
+					{
+						"cat_id": 1419,
+						"cat_name": "时尚女包",
+						"cat_pid": 1402,
+						"cat_level": 1,
+						"cat_deleted": false,
+						"children": [
+							{
+								"cat_id": 1429,
+								"cat_name": "双肩包",
+								"cat_pid": 1419,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1430,
+								"cat_name": "斜挎包",
+								"cat_pid": 1419,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1431,
+								"cat_name": "钱包",
+								"cat_pid": 1419,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1432,
+								"cat_name": "手提包",
+								"cat_pid": 1419,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1433,
+								"cat_name": "手拿包",
+								"cat_pid": 1419,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1613,
+								"cat_name": "你很帅",
+								"cat_pid": 1419,
+								"cat_level": 2,
+								"cat_deleted": false
+							}
+						]
+					},
+					{
+						"cat_id": 1420,
+						"cat_name": "男包皮具",
+						"cat_pid": 1402,
+						"cat_level": 1,
+						"cat_deleted": false,
+						"children": [
+							{
+								"cat_id": 1435,
+								"cat_name": "单肩包",
+								"cat_pid": 1420,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1436,
+								"cat_name": "斜挎包",
+								"cat_pid": 1420,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1437,
+								"cat_name": "男士手提包",
+								"cat_pid": 1420,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1438,
+								"cat_name": "皮具套装",
+								"cat_pid": 1420,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1439,
+								"cat_name": "男士手拿包",
+								"cat_pid": 1420,
+								"cat_level": 2,
+								"cat_deleted": false
+							}
+						]
+					},
+					{
+						"cat_id": 1428,
+						"cat_name": "品牌墙",
+						"cat_pid": 1402,
+						"cat_level": 1,
+						"cat_deleted": false,
+						"children": [
+							{
+								"cat_id": 1443,
+								"cat_name": "七匹狼",
+								"cat_pid": 1428,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1445,
+								"cat_name": "梦特娇",
+								"cat_pid": 1428,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1446,
+								"cat_name": "美洲野牛",
+								"cat_pid": 1428,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1447,
+								"cat_name": "啄木鸟",
+								"cat_pid": 1428,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1448,
+								"cat_name": "帕迪欧",
+								"cat_pid": 1428,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1449,
+								"cat_name": "非常保罗",
+								"cat_pid": 1428,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1450,
+								"cat_name": "爱华仕",
+								"cat_pid": 1428,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1451,
+								"cat_name": "COACH",
+								"cat_pid": 1428,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1452,
+								"cat_name": "特斯黛",
+								"cat_pid": 1428,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1453,
+								"cat_name": "doodoo",
+								"cat_pid": 1428,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1454,
+								"cat_name": "MK",
+								"cat_pid": 1428,
+								"cat_level": 2,
+								"cat_deleted": false
+							}
+						]
+					},
+					{
+						"cat_id": 1614,
+						"cat_name": "钦帅帅七七",
+						"cat_pid": 1402,
+						"cat_level": 1,
+						"cat_deleted": false,
+						"children": [
+							{
+								"cat_id": 1620,
+								"cat_name": "2222",
+								"cat_pid": 1614,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1621,
+								"cat_name": "2222",
+								"cat_pid": 1614,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1623,
+								"cat_name": "少爷作业写完了吗",
+								"cat_pid": 1614,
+								"cat_level": 2,
+								"cat_deleted": false
+							}
+						]
+					}
+				]
+			},
+			{
+				"cat_id": 1487,
+				"cat_name": "少爷作业写完了吗",
+				"cat_pid": 0,
+				"cat_level": 0,
+				"cat_deleted": false,
+				"children": [
+					{
+						"cat_id": 1488,
+						"cat_name": "www",
+						"cat_pid": 1487,
+						"cat_level": 1,
+						"cat_deleted": false,
+						"children": [
+							{
+								"cat_id": 1492,
+								"cat_name": "fff",
+								"cat_pid": 1488,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1588,
+								"cat_name": "222",
+								"cat_pid": 1488,
+								"cat_level": 2,
+								"cat_deleted": false
+							}
+						]
+					}
+				]
+			},
+			{
+				"cat_id": 1493,
+				"cat_name": "少爷作业写完了吗",
+				"cat_pid": 0,
+				"cat_level": 0,
+				"cat_deleted": false
+			},
+			{
+				"cat_id": 1532,
+				"cat_name": "少爷作业写完了吗",
+				"cat_pid": 0,
+				"cat_level": 0,
+				"cat_deleted": false,
+				"children": [
+					{
+						"cat_id": 1590,
+						"cat_name": "123",
+						"cat_pid": 1532,
+						"cat_level": 1,
+						"cat_deleted": false,
+						"children": [
+							{
+								"cat_id": 1615,
+								"cat_name": "564",
+								"cat_pid": 1590,
+								"cat_level": 2,
+								"cat_deleted": false
+							},
+							{
+								"cat_id": 1622,
+								"cat_name": "2222",
+								"cat_pid": 1590,
+								"cat_level": 2,
+								"cat_deleted": false
+							}
+						]
+					}
+				]
+			},
+			{
+				"cat_id": 1599,
+				"cat_name": "对巴少爷小菜一碟",
+				"cat_pid": 0,
+				"cat_level": 1,
+				"cat_deleted": false,
+				"children": [
+					{
+						"cat_id": 1610,
+						"cat_name": "99999999",
+						"cat_pid": 1599,
+						"cat_level": 1,
+						"cat_deleted": false,
+						"children": [
+							{
+								"cat_id": 1619,
+								"cat_name": "22222",
+								"cat_pid": 1610,
+								"cat_level": 2,
+								"cat_deleted": false
+							}
+						]
+					}
+				]
+			},
+			{
+				"cat_id": 1602,
+				"cat_name": "撒的",
+				"cat_pid": 0,
+				"cat_level": 1,
+				"cat_deleted": false
+			},
+			{
+				"cat_id": 1603,
+				"cat_name": "对巴少爷小菜一碟",
+				"cat_pid": 0,
+				"cat_level": 0,
+				"cat_deleted": false
+			},
+			{
+				"cat_id": 1605,
+				"cat_name": "NPNPNPN",
+				"cat_pid": 0,
+				"cat_level": 1,
+				"cat_deleted": false
+			},
+			{
+				"cat_id": 1606,
+				"cat_name": "6666",
+				"cat_pid": 0,
+				"cat_level": 1,
+				"cat_deleted": false
+			}
+		]
+	},
+	"meta": {
+		"msg": "获取成功",
+		"status": 200
+	}
+}

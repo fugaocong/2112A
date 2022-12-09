@@ -23,7 +23,7 @@
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
             <el-button type="primary" icon="el-icon-edit" size="small" @click="openEdit(scope.row)"></el-button>
-            <el-button type="danger" icon="el-icon-delete" size="small"></el-button>
+            <el-button type="danger" icon="el-icon-delete" size="small" @click="del(scope.row)"></el-button>
             <el-button type="warning" icon="el-icon-setting" size="small"></el-button>
           </template>
         </el-table-column>
@@ -44,9 +44,9 @@
     <el-dialog :title="editId == -1 ? '添加用户' : '编辑用户'" :visible.sync="dialogVisible" width="50%">
       <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="用户名" prop="username">
-          <el-input v-model="ruleForm.username"></el-input>
+          <el-input v-model="ruleForm.username" :disabled="editId == -1 ? false : true"></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="password">
+        <el-form-item label="密码" prop="password" v-if="editId == -1 ? true : false">
           <el-input v-model="ruleForm.password"></el-input>
         </el-form-item>
         <el-form-item label="邮箱" prop="email">
@@ -104,7 +104,6 @@ export default {
       usersList().then((res) => {
         // console.log(res)
         this.tableData = res.data.users
-        this.total = res.data.total
       })
     },
     handleSizeChange(val) {
@@ -117,7 +116,14 @@ export default {
     },
     // 打开添加框
     openAdd() {
+      this.editId = -1
       this.dialogVisible = true
+      this.ruleForm = {
+        username: "",
+        password: "",
+        email: "",
+        mobile: ""
+      }
     },
     // 确定提交
     submitForm(formName) {
@@ -166,6 +172,28 @@ export default {
         email: "",
         mobile: ""
       }
+    },
+    // 删除
+    del(row) {
+      this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          this.$message({
+            type: "success",
+            message: "删除成功!"
+          })
+          let index = this.tableData.findIndex((i) => i.id == row.id)
+          this.tableData.splice(index, 1)
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          })
+        })
     }
   },
   created() {
