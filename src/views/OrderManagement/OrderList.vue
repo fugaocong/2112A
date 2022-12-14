@@ -6,7 +6,7 @@
           <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
         </el-input>
       </header>
-      <el-table :data="pagesList" border style="width: 100%">
+      <el-table :data="orderList" border style="width: 100%">
         <el-table-column type="index" label="#"> </el-table-column>
         <el-table-column prop="order_number" label="订单编号"> </el-table-column>
         <el-table-column prop="order_price" label="订单价格"> </el-table-column>
@@ -32,9 +32,9 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="params.pageNum"
+        :current-page="params.pagenum"
         :page-sizes="[1, 3, 5, 10]"
-        :page-size="params.pageSize"
+        :page-size="params.pagesize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
       >
@@ -53,7 +53,7 @@
   </div>
 </template>
 <script>
-import { ordersList } from "@/utils/api.js"
+import { ordersList } from "@/utils/api/goods.js"
 // 城市信息
 
 export default {
@@ -61,9 +61,10 @@ export default {
     return {
       params: {
         query: "",
-        pageNum: 1,
-        pageSize: 5
+        pagenum: 1,
+        pagesize: 5
       },
+      total: 0,
       orderList: [],
       addressDialog: false,
       // 城市数据
@@ -90,18 +91,21 @@ export default {
   methods: {
     // 获取后台数据
     getOrdersList() {
-      ordersList({ params: this.params }).then((res) => {
-        // console.log(res)
+      ordersList(this.params).then((res) => {
+        console.log(res)
         this.orderList = res.data.goods
+        this.total = res.data.total
       })
     },
     // 搜索
     search() {},
     handleSizeChange(val) {
-      this.params.pageSize = val
+      this.params.pagesize = val
+      this.getOrdersList()
     },
     handleCurrentChange(val) {
-      this.params.pageNum = val
+      this.params.pagenum = val
+      this.getOrdersList()
     },
     // 打开编辑框
     openEdit(row) {
@@ -125,16 +129,16 @@ export default {
     }
   },
   computed: {
-    total() {
-      return this.orderList.length
-    },
+    // total() {
+    //   return this.orderList.length
+    // },
     // 计算分页展示数据
-    pagesList() {
-      return this.orderList.slice(
-        this.params.pageSize * (this.params.pageNum - 1),
-        this.params.pageSize * this.params.pageNum
-      )
-    }
+    // pagesList() {
+    //   return this.orderList.slice(
+    //     this.params.pagesize * (this.params.pagenum - 1),
+    //     this.params.pagesize * this.params.pagenum
+    //   )
+    // }
   }
 }
 </script>

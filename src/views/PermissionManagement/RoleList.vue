@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card>
-      <el-button type="primary" class="addButton" @click="openAdd">添加按钮</el-button>
+      <el-button type="primary" class="addButton" @click="openAddOrUpdate">添加按钮</el-button>
       <el-table :data="tableData" border style="width: 100%">
         <el-table-column type="expand">
           <!-- 权限展示 -->
@@ -36,55 +36,39 @@
         <el-table-column prop="roleDesc" label="角色描述"> </el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-edit" size="small" @click="openEdit(scope.row)">编辑</el-button>
+            <el-button type="primary" icon="el-icon-edit" size="small" @click="openAddOrUpdate(scope.row)"
+              >编辑</el-button
+            >
             <el-button type="danger" icon="el-icon-delete" size="small" @click="del(scope.row)">删除</el-button>
-            <el-button type="warning" icon="el-icon-setting" size="small">分配权限</el-button>
+            <el-button type="warning" icon="el-icon-setting" size="small" @click="rights(scope.row)"
+              >分配权限</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
     </el-card>
     <!-- 对话框 -->
-    <el-dialog :title="editId == -1 ? '添加用户' : '编辑用户'" :visible.sync="dialogVisible" width="50%">
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="活动名称" prop="roleName">
-          <el-input v-model="ruleForm.roleName"></el-input>
-        </el-form-item>
-        <el-form-item label="活动名称" prop="roleDesc">
-          <el-input v-model="ruleForm.roleDesc"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button @click="resetForm('ruleForm')">取消</el-button>
-          <el-button type="primary" @click="submitForm('ruleForm')" v-if="editId == -1">确定</el-button>
-          <el-button type="primary" @click="editForm('ruleForm')" v-else>确定</el-button>
-        </el-form-item>
-      </el-form>
-    </el-dialog>
+    <add-or-update-role v-if="dialogVisible" ref="addOrUpdateRole" @changeRole="changeRole"></add-or-update-role>
+    <privilege-child ref="TreeRoles" @setRole="setRole"></privilege-child>
   </div>
 </template>
 
 <script>
-import { getRolesList, addRolesList, editRolesList } from "@/utils/api"
+import { getRolesList, setRolesList, DeleteRoles } from "@/utils/api/roleList"
+import { rightsList } from "@/utils/api/privilege"
+import addOrUpdateRole from "./addOrUpdateRole.vue"
+import PrivilegeChild from "./PrivilegeChild.vue"
+
 export default {
   data() {
     return {
       // 展示的数据
       tableData: [],
       // 对话框开启关闭的状态
-      dialogVisible: false,
-      // 编辑取到的id，也是判断添加和编辑的状态
-      editId: -1,
-      // 对话框数据
-      ruleForm: {
-        roleName: "",
-        roleDesc: ""
-      },
-      // 对话框的正则验证
-      rules: {
-        roleName: [{ required: true, message: "请输入角色名称", trigger: "blur" }],
-        roleDesc: [{ required: true, message: "请输入角色描述", trigger: "blur" }]
-      }
+      dialogVisible: false
     }
   },
+  components: { addOrUpdateRole, PrivilegeChild },
   methods: {
     // 获取角色数据
     getRoles() {
@@ -93,50 +77,27 @@ export default {
         this.tableData = res.data
       })
     },
-    // 打开添加框
-    openAdd() {
+    /**编辑和添加的按钮 */
+    openAddOrUpdate(row) {
       this.dialogVisible = true
-    },
-    // 确定提交
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          // alert("submit!")
-          addRolesList(this.ruleForm).then((res) => {
-            this.tableData.push({ id: new Date().getTime(), ...this.ruleForm, children: [] })
-            this.dialogVisible = false
-            this.ruleForm = {
-              roleName: "",
-              roleDesc: ""
-            }
-          })
-        } else {
-          console.log("error submit!!")
-          return false
-        }
-      })
-    },
-    // 取消提交
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
-    },
-    openEdit(row) {
-      this.dialogVisible = true
-      this.editId = row.id
-      this.ruleForm.roleName = row.roleName
-      this.ruleForm.roleDesc = row.roleDesc
-    },
-    editForm() {
-      let index = this.tableData.findIndex((i) => i.id == this.editId)
-      this.tableData[index].roleName = this.ruleForm.roleName
-      this.tableData[index].roleDesc = this.ruleForm.roleDesc
-      this.editId = -1
-      this.dialogVisible = false
-      this.ruleForm = {
-        roleName: "",
-        roleDesc: ""
+      if (row.constructor == Object) {
+        this.$nextTick(() => {
+          this.$refs.addOrUpdateRole.init(row)
+        })
+      } else {
+        this.$nextTick(() => {
+          this.$refs.addOrUpdateRole.init()
+        })
       }
     },
+    /**子传父 */
+    changeRole(info) {
+      this.dialogVisible = false
+      if (info) {
+        this.tableData.push(info)
+      }
+    },
+
     // 删除
     del(row) {
       this.$confirm("此操作将永久删除该文件, 是否继续?", "提示", {
@@ -158,15 +119,29 @@ export default {
             message: "已取消删除"
           })
         })
+    },
+    /**分配角色权限 */
+    rights(item) {
+      this.roleId = item.id
+      rightsList().then((res) => {
+        let { data } = res
+        this.$refs.TreeRoles.getTree(data)
+      })
+    },
+    /**角色授权 */
+    setRole(arrID) {
+      setRolesList({ roleId: this.roleId, rights: arrID }).then(() => {
+        this.getRoles()
+      })
+    },
+    /**删除角色指定权限 */
+    delTree(rolesId, rightId) {
+      DeleteRoles({ roleId: rolesId, rightId: rightId }).then(() => {})
     }
   },
   created() {
     this.getRoles()
-  },
-  mounted() {},
-  components: {},
-  computed: {},
-  watch: {}
+  }
 }
 </script>
 

@@ -1,6 +1,6 @@
 import axios from "axios"
 import { getToken, removeToken } from "./auth"
-import { MessageBox } from "element-ui"
+import Vue from "vue"
 import router from "@/router"
 const instance = axios.create({
   baseURL: "/",
@@ -93,15 +93,42 @@ instance.interceptors.response.use(
         default:
           title = error.response.status
       }
-      return MessageBox.alert(message, title, {
+      return Vue.prototype.$message({
+        message: "title",
         type: "warning"
       })
     } else {
-      return MessageBox.alert("请联系系统管理员，或稍后再试！", "未知错误", {
+      return Vue.prototype.$message({
+        message: "请联系系统管理员，或稍后再试！",
         type: "error"
       })
     }
   }
 )
+/**
+ * 封装跨域接口关键字
+ */
+instance.addKeyword = (actionName) => process.env.VUE_APP_BASE_API + actionName
+
+/**
+ * 封装post 或 get 数据请求
+ * @param {*} data 数据对象
+ * @param {*} openDefaultData 是否开启默认数据？
+ * @param {*} contentType 数据格式
+ *  json：'application/json; charset=utf-8'
+ *  form：'application/x-www-form-urlencoded; charset=utf-8'
+ */
+instance.send = (url, data = {}, method = "get", contentType = "json") => {
+  return instance({
+    method,
+    url: instance.addKeyword(url),
+    params: data,
+    data,
+    headers: {
+      "Content-type":
+        contentType === "json" ? "application/json;charset=utf-8" : "multipart/form-data;boundary=something"
+    }
+  })
+}
 
 export default instance

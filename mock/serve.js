@@ -3,10 +3,10 @@ let Mock = require("mockjs")
 /**登陆的数据 */
 const loginData = require("./common/login.json")
 /**侧边栏的数据 */
-const sidebarData = require("./common/sidebar.json")
+const menusData = require("./common/sidebar.json")
 /**权限角色数据 */
 const rolesData = require("./common/roles.json")
-/**权限数据 */
+/**权限列表数据 */
 const authorityData = require("./common/authority.json")
 /**权限数据 */
 const usersData = require("./common/users.json")
@@ -16,7 +16,8 @@ const goodsData = require("./common/goods.json")
 const ordersData = require("./common/orders.json")
 /**商品分类数据 */
 const categoriesData = require("./common/categories.json")
-
+//**分配权限的展示数据 */
+const rightsData = require("./common/rights.json")
 let app = express()
 /**登陆页面的数据 */
 app.use("/login", function (req, res) {
@@ -27,10 +28,10 @@ app.use("/login", function (req, res) {
   )
 })
 /**侧边栏的数据 */
-app.use("/sidebar", function (req, res) {
+app.use("/menus", function (req, res) {
   res.json(
     Mock.mock({
-      ...sidebarData
+      ...menusData
     })
   )
 })
@@ -42,14 +43,7 @@ app.use("/roles", function (req, res) {
     })
   )
 })
-/**权限数据 */
-app.use("/authority", function (req, res) {
-  res.json(
-    Mock.mock({
-      ...authorityData
-    })
-  )
-})
+
 /**获取用户数据 */
 app.use("/users", function (req, res) {
   res.json(
@@ -79,6 +73,22 @@ app.use("/categories", function (req, res) {
   res.json(
     Mock.mock({
       ...categoriesData
+    })
+  )
+})
+/**角色列表的权限数据 */
+app.use("/rights", function (req, res) {
+  res.json(
+    Mock.mock({
+      ...rightsData
+    })
+  )
+})
+/**权限列表的数据 */
+app.use("/authority", function (req, res) {
+  res.json(
+    Mock.mock({
+      ...authorityData
     })
   )
 })

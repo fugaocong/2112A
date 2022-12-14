@@ -18,7 +18,8 @@
 
 <script>
 import router from "@/router"
-import { loginList } from "../utils/api"
+import { loginList } from "@/utils/commonApi"
+import { setToken } from "@/utils/auth"
 export default {
   data() {
     return {
@@ -30,9 +31,22 @@ export default {
   },
   methods: {
     login() {
-      loginList({ params: this.form }).then((res) => {
-        // console.log(res)
-        this.$router.push("/WelcomePage")
+      loginList(this.form).then((res) => {
+        console.log(res)
+        if (res && res.meta.status == 200) {
+          setToken(res.data.token)
+          this.$notify({
+            title: "登录成功",
+            message: res.data.username + "欢迎光临",
+            type: "success"
+          })
+          this.$router.replace("/WelcomePage")
+        } else {
+          this.$notify.error({
+            title: "登陆失败",
+            message: res.meta.msg
+          })
+        }
       })
       // 'http://heima.9yuecloud.com:9988/api/private/v1/api/login
       // this.$http({ method: "post", data: this.form, url: "/api/login" }).then((res) => {
@@ -51,7 +65,7 @@ export default {
 <style lang="scss" scoped>
 .wrap {
   height: 100vh;
-  background-image: url(../assets/bg.gif);
+  background-image: url(@/assets/bg.gif);
   display: flex;
   justify-content: center;
   align-items: center;

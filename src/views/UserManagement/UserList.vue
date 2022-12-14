@@ -3,10 +3,10 @@
     <el-card>
       <!-- 搜索添加 -->
       <div class="search-add">
-        <el-input placeholder="请输入内容" v-model="search" class="input-with-select">
-          <el-button slot="append" icon="el-icon-search"></el-button>
+        <el-input placeholder="请输入内容" v-model="params.query" class="input-with-select">
+          <el-button slot="append" icon="el-icon-search" @click="search"></el-button>
         </el-input>
-        <el-button type="primary" @click="openAdd">添加用户</el-button>
+        <el-button type="primary" @click="openAddOrUpdate">添加用户</el-button>
       </div>
       <!-- 表格展示 -->
       <el-table :data="pagingList" border style="width: 100%">
@@ -17,14 +17,25 @@
         <el-table-column prop="role_name" label="角色"> </el-table-column>
         <el-table-column prop="mg_state" label="状态">
           <template slot-scope="scope">
-            <el-switch v-model="scope.row.mg_state" active-color="#13ce66" inactive-color="#ff4949"> </el-switch>
+            <el-switch
+              v-model="scope.row.mg_state"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              @change="updateStatus(scope.row)"
+            >
+            </el-switch>
           </template>
         </el-table-column>
         <el-table-column fixed="right" label="操作">
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-edit" size="small" @click="openEdit(scope.row)"></el-button>
+            <el-button type="primary" icon="el-icon-edit" size="small" @click="openAddOrUpdate(scope.row)"></el-button>
             <el-button type="danger" icon="el-icon-delete" size="small" @click="del(scope.row)"></el-button>
-            <el-button type="warning" icon="el-icon-setting" size="small"></el-button>
+            <el-button
+              type="warning"
+              icon="el-icon-setting"
+              size="small"
+              @click="assigningButton(scope.row)"
+            ></el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -32,146 +43,136 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="pageNum"
+        :current-page="params.pagenum"
         :page-sizes="[1, 2, 3, 5]"
-        :page-size="pageSize"
+        :page-size="params.pagesize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
       >
       </el-pagination>
     </el-card>
-    <!-- 对话框 -->
-    <el-dialog :title="editId == -1 ? '添加用户' : '编辑用户'" :visible.sync="dialogVisible" width="50%">
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="用户名" prop="username">
-          <el-input v-model="ruleForm.username" :disabled="editId == -1 ? false : true"></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="password" v-if="editId == -1 ? true : false">
-          <el-input v-model="ruleForm.password"></el-input>
-        </el-form-item>
-        <el-form-item label="邮箱" prop="email">
-          <el-input v-model="ruleForm.email"></el-input>
-        </el-form-item>
-        <el-form-item label="电话" prop="mobile">
-          <el-input v-model="ruleForm.mobile"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button @click="resetForm('ruleForm')">取消</el-button>
-          <el-button type="primary" @click="submitForm('ruleForm')" v-if="editId == -1">确定</el-button>
-          <el-button type="primary" @click="editForm('ruleForm')" v-else>确定</el-button>
-        </el-form-item>
-      </el-form>
-    </el-dialog>
+    <!-- 添加或编辑的对话框 -->
+    <user-add-or-update
+      v-if="AddDialog"
+      ref="UserAddOrUpdate"
+      @closeChildDialog="closeChildDialog"
+    ></user-add-or-update>
+    <!-- 分配角色 -->
+    <assigning-roles v-if="assigningDialog" ref="assigningRoles" @changeRoles="changeRoles"></assigning-roles>
   </div>
 </template>
 
 <script>
-import { usersList } from "@/utils/api.js"
+import UserAddOrUpdate from "./UserAddOrUpdate.vue"
+import { usersList, addUserList, updateUserStatusList, updateUserList, deleteUserList } from "@/utils/api/user.js"
+import { getRolesList } from "@/utils/api/roleList"
+import { STATUS } from "@/constStatus"
+import AssigningRoles from "./AssigningRoles.vue"
 export default {
   data() {
     return {
       // 获取的数据
       tableData: [],
-      // 分页数据第几页
-      pageNum: 1,
-      // 分页每页多少个
-      pageSize: 5,
-      // 搜索
-      search: "",
-      // 对话框开启关闭的状态
-      dialogVisible: false,
-      // 编辑的状态和添加框的打开关闭状态
-      editId: -1,
-      // 对话框数据
-      ruleForm: {
-        username: "",
-        password: "",
-        email: "",
-        mobile: ""
+      params: {
+        // 分页数据第几页
+        pagenum: 1,
+        // 分页每页多少个
+        pagesize: 5,
+        // 搜索
+        query: ""
       },
-      // 对话框的正则验证
-      rules: {
-        username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
-        email: [{ required: true, message: "请输入邮箱", trigger: "blur" }],
-        mobile: [{ required: true, message: "请输入电话", trigger: "blur" }]
-      }
+      /**添加或编辑框的子组件的懒加载 */
+      AddDialog: false,
+      /**分配角色组件的懒加载状态 */
+      assigning: false,
+      /**角色列表数据 */
+      assigningDialog: [],
+      total: 0
+    }
+  },
+  components: { UserAddOrUpdate, AssigningRoles },
+  computed: {
+    // total() {
+    //   return this.tableData.length
+    // },
+    // 计算分页展示数据
+    pagingList() {
+      return this.tableData.slice(
+        this.params.pagesize * (this.params.pagenum - 1),
+        this.params.pagesize * this.params.pagenum
+      )
     }
   },
   methods: {
-    // 获取数据
+    /** 获取数据*/
     getUsersList() {
-      usersList().then((res) => {
-        // console.log(res)
-        this.tableData = res.data.users
-      })
-    },
-    handleSizeChange(val) {
-      // console.log(`每页 ${val} 条`)
-      this.pageSize = val
-    },
-    handleCurrentChange(val) {
-      // console.log(`当前页: ${val}`)
-      this.pageNum = val
-    },
-    // 打开添加框
-    openAdd() {
-      this.editId = -1
-      this.dialogVisible = true
-      this.ruleForm = {
-        username: "",
-        password: "",
-        email: "",
-        mobile: ""
-      }
-    },
-    // 确定提交
-    submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
-        if (valid) {
-          // alert("submit!")
-          this.tableData.push({ id: new Date().getTime(), ...this.ruleForm, role_name: "超级管理员" })
-          this.dialogVisible = false
-          this.ruleForm = {
-            username: "",
-            password: "",
-            email: "",
-            mobile: ""
-          }
-        } else {
-          console.log("error submit!!")
-          return false
+      usersList(this.params).then((res) => {
+        console.log(res)
+        let { status } = res.meta
+        let { users, total } = res.data
+        if (status == STATUS.SUCCESS) {
+          this.tableData = users
+          this.total = total
         }
       })
     },
-    // 取消提交
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
+    /**获取每页多少条 */
+    handleSizeChange(val) {
+      // console.log(`每页 ${val} 条`)1
+      this.params.pagesize = val
     },
-    // 打开编辑框和数据回填
-    openEdit(row) {
-      this.dialogVisible = true
-      this.editId = row.id
-      this.ruleForm.username = row.username
-      this.ruleForm.password = row.password
-      this.ruleForm.email = row.email
-      this.ruleForm.mobile = row.mobile
+    /**获取第几页数据 */
+    handleCurrentChange(val) {
+      // console.log(`当前页: ${val}`)
+      this.params.pagenum = val
     },
-    // 确定提交
-    editForm() {
-      let index = this.tableData.findIndex((i) => i.id == this.editId)
-      this.tableData[index].username = this.ruleForm.username
-      this.tableData[index].password = this.ruleForm.password
-      this.tableData[index].email = this.ruleForm.email
-      this.tableData[index].mobile = this.ruleForm.mobile
-      this.editId = -1
-      this.dialogVisible = false
-      this.ruleForm = {
-        username: "",
-        password: "",
-        email: "",
-        mobile: ""
+    /**打开添加框或编辑框 */
+    openAddOrUpdate(info) {
+      /**让组件显示 */
+      this.AddDialog = true
+      if (info.constructor == Object) {
+        this.$nextTick(() => {
+          this.$refs.UserAddOrUpdate.init(info)
+        })
+      } else {
+        this.$nextTick(() => {
+          this.$refs.UserAddOrUpdate.init()
+        })
       }
+    },
+    /**关闭对话框和修改数据 */
+    closeChildDialog(info) {
+      this.AddDialog = false
+      if (info) {
+        addUserList(info).then((res) => {
+          let { status, msg } = res.meta
+          if (status == STATUS.SUCCESS) {
+            this.$message({
+              message: msg,
+              type: "success"
+            })
+          } else {
+            this.$message({
+              message: msg,
+              type: "info"
+            })
+          }
+          // console.log(res)
+        })
+        // this.getUsersList()
+        this.tableData.push(info)
+      }
+    },
+    /**修改用户状态 */
+    updateStatus(row) {
+      console.log(row)
+      updateUserStatusList({ uid: row.id, type: row.mg_state }).then((res) => {
+        console.log(res)
+      })
+    },
+    /**搜索 */
+    search() {
+      this.getUsersList(this.params.query)
     },
     // 删除
     del(row) {
@@ -181,6 +182,11 @@ export default {
         type: "warning"
       })
         .then(() => {
+          /**删除接口 */
+          deleteUserList(row.id).then((res) => {
+            console.log(res)
+          })
+          //一下数据开启接口后删除
           this.$message({
             type: "success",
             message: "删除成功!"
@@ -194,24 +200,34 @@ export default {
             message: "已取消删除"
           })
         })
+    },
+    /**分配角色的子组件 */
+    changeRoles() {},
+    /**分配角色按钮 */
+    assigningButton(row) {
+      // console.log(row)
+      this.assigningDialog = true
+      this.$nextTick(() => {
+        this.$refs.assigningRoles.inits({
+          username: row.username,
+          role_name: row.role_name,
+          roleName: this.rolesList
+        })
+      })
+    },
+    getRoleList() {
+      getRolesList().then((res) => {
+        // console.log(res)
+        this.rolesList = res.data
+      })
     }
   },
+
   created() {
     // 调用请求
     this.getUsersList()
-  },
-  mounted() {},
-  components: {},
-  computed: {
-    total() {
-      return this.tableData.length
-    },
-    // 计算分页展示数据
-    pagingList() {
-      return this.tableData.slice(this.pageSize * (this.pageNum - 1), this.pageSize * this.pageNum)
-    }
-  },
-  watch: {}
+    this.getRoleList()
+  }
 }
 </script>
 

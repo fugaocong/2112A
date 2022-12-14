@@ -7,7 +7,7 @@
         </el-input>
         <el-button type="primary">添加商品</el-button>
       </header>
-      <el-table :data="pagesList" border style="width: 100%">
+      <el-table :data="goodList" border style="width: 100%">
         <el-table-column type="index" label="#"> </el-table-column>
         <el-table-column prop="goods_name" label="商品名称"> </el-table-column>
         <el-table-column prop="goods_price" label="商品价格(元)" width="110"> </el-table-column>
@@ -27,9 +27,9 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="params.pageNum"
+        :current-page="params.pagenum"
         :page-sizes="[1, 3, 5, 10]"
-        :page-size="params.pageSize"
+        :page-size="params.pagesize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"
       >
@@ -38,33 +38,37 @@
   </div>
 </template>
 <script>
-import { goodsList } from "@/utils/api.js"
+import { goodsList } from "@/utils/api/goods.js"
 export default {
   data() {
     return {
       params: {
         query: "",
-        pageNum: 1,
-        pageSize: 5
+        pagenum: 1,
+        pagesize: 5
       },
+      total: 0,
       goodList: []
     }
   },
   methods: {
     // 获取后台数据
     getGoodList() {
-      goodsList({ params: this.params }).then((res) => {
-        // console.log(res)
+      goodsList(this.params).then((res) => {
+        console.log(res)
         this.goodList = res.data.goods
+        this.total = res.data.total
       })
     },
     // 搜索
     search() {},
     handleSizeChange(val) {
-      this.params.pageSize = val
+      this.params.pagesize = val
+      this.getGoodList()
     },
     handleCurrentChange(val) {
-      this.params.pageNum = val
+      this.params.pagenum = val
+      this.getGoodList()
     },
     // 删除
     del(row) {
@@ -105,16 +109,16 @@ export default {
     }
   },
   computed: {
-    total() {
-      return this.goodList.length
-    },
-    // 计算分页展示数据
-    pagesList() {
-      return this.goodList.slice(
-        this.params.pageSize * (this.params.pageNum - 1),
-        this.params.pageSize * this.params.pageNum
-      )
-    }
+    //   total() {
+    //     return this.goodList.length
+    //   },
+    //   // 计算分页展示数据
+    //   pagesList() {
+    //     return this.goodList.slice(
+    //       this.params.pagesize * (this.params.pagenum - 1),
+    //       this.params.pagesize * this.params.pagenum
+    //     )
+    //   }
   }
 }
 </script>

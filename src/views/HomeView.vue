@@ -3,7 +3,10 @@
     <el-container>
       <!-- 左侧 -->
       <el-aside :width="isCollapse ? '65px' : '200px'">
-        <h1>电商后台管理</h1>
+        <div class="header">
+          <img src="https://www.escook.cn/vue-shop/img/heima.b5a855ee.png" alt="" />
+          <h1>电商后台管理</h1>
+        </div>
         <el-menu
           :default-active="$route.path"
           class="el-menu-vertical-demo"
@@ -52,7 +55,7 @@
 </template>
 
 <script>
-import { sidebarList } from "../utils/api"
+import { sidebarList } from "@/utils/commonApi.js"
 export default {
   data() {
     return {
@@ -102,6 +105,7 @@ export default {
     text-overflow: ellipsis;
     height: 60px;
     line-height: 60px;
+    margin-left: 10px;
   }
 }
 
@@ -114,5 +118,8 @@ export default {
   background-color: #e9eef3;
   padding: 10px;
   box-sizing: border-box;
+}
+.header {
+  display: flex;
 }
 </style>

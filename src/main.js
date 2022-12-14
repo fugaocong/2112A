@@ -19,6 +19,10 @@ Vue.prototype.$http = http
 import ZkTable from "vue-table-with-tree-grid"
 Vue.use(ZkTable)
 
+/**引入v-charts */
+import VCharts from "v-charts-v2"
+Vue.use(VCharts)
+
 Vue.config.productionTip = false
 
 new Vue({

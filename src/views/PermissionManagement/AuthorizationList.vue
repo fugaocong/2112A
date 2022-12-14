@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import { authorityList } from "@/utils/api.js"
+import { authorityList } from "@/utils/api/privilege.js"
 export default {
   data() {
     return {

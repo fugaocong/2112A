@@ -18,7 +18,7 @@ const routes = [
       {
         path: "/WelcomePage",
         name: "WelcomePage",
-        component: () => import("../views/WelcomePage.vue")
+        component: () => import("../views/common/WelcomePage.vue")
       },
       {
         path: "/users",
@@ -43,6 +43,12 @@ const routes = [
         name: "goods",
         meta: ["商品管理", "商品列表"],
         component: () => import("../views/CommodityManagement/ProductList.vue")
+      },
+      {
+        path: "/AddGoods",
+        name: "AddGoods",
+        meta: ["商品管理", "添加商品"],
+        component: () => import("../views/CommodityManagement/AddGoods.vue")
       },
       {
         path: "/params",
@@ -74,7 +80,7 @@ const routes = [
   {
     path: "/login",
     name: "login",
-    component: () => import("../views/LoginPage.vue")
+    component: () => import("../views/common/LoginPage.vue")
   }
 ]
 
