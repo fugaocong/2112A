@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <style>
+        html,
+        body,
+        #container {
+            width: 100%;
+            height: 100%;
+        }
+        .btn-item{
+            position: fixed;
+            top: 0;
+            right: 0;
+        }
+    </style>
+    <title>设置地图级别与中心点</title>
+</head>
+
+<body>
+
+    <div id="container"></div>
+    <div class="btn-item">
+        <button id="random-center-btn">随机地图中心点</button>
+        <button id="random-zoom-btn">随机地图层级</button>
+        <button id="random-zoomcenter-btn">随机地图层级与中心点</button>
+    </div>
+
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=02eacb78f7f86d9c02415b97f123b8bf"></script>
+    <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+    <script>
+        var map = new AMap.Map("container", {
+            resizeEnable: true,
+            zoom: 12,
+            center: [114.39950042, 36.10594098],
+            showIndoorMap: false
+        })
+        /** 随机中心点*/
+        document.querySelector("#random-center-btn").onclick = function () {
+            var lng = 114.39950042 + Math.floor(Math.random() * 589828) / 1e6
+            var lat = 36.10594098 + Math.floor(Math.random() * 589828) / 1e6
+            map.setCenter([lng, lat])
+            log.info(`当前中心点已设置为 ${lng.toFixed(6)},${lat.toFixed(6)}`)
+        }
+        /** 随机图层*/
+        document.querySelector("#random-zoom-btn").onclick = function () {
+            var zoom = Math.floor(Math.random() * 7) + 11;
+            map.setZoom(zoom);
+            log.info(`当前层级已设为${zoom}级`);
+        }
+        /**随机图层和中心点*/
+        document.querySelector("#random-zoomcenter-btn").onclick = function () {
+            var zoom = Math.floor(Math.random() * 7) + 11;
+            var lng = 114.39950042 + Math.floor(Math.random() * 589828) / 1e6
+            var lat = 36.10594098 + Math.floor(Math.random() * 589828) / 1e6
+            map.setZoomAndCenter(zoom, [lng, lat])
+            log.info(`当前层级设为${zoom}级，中心点为${lng.toFixed(6)},${lat.toFixed(6)}`)
+        }
+    </script>
+</body>
+
+</html>

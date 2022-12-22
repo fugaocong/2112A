@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        #container {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container"></div>
+</body>
+<script type="text/javascript"
+    src="https://webapi.amap.com/maps?v=1.4.15&key=02eacb78f7f86d9c02415b97f123b8bf"></script>
+<script>
+    var map = new AMap.Map('container', {
+        zoom: 10,  //设置地图显示的缩放级别
+        center: [114.39950042, 36.10594098],//设置地图中心点坐标
+        layers: [new AMap.TileLayer.Satellite()],  //设置图层,可设置成包含一个或多个图层的数组
+        mapStyle: 'amap://styles/whitesmoke',  //设置地图的显示样式
+        viewMode: '2D',  //设置地图模式
+        lang: 'zh_cn',  //设置地图语言类型
+    });
+    AMap.plugin([
+        'AMap.ToolBar',
+        'AMap.Scale',
+        'AMap.OverView',
+        'AMap.MapType',
+        'AMap.Geolocation',
+    ], function () {
+        // 在图面添加工具条控件，工具条控件集成了缩放、平移、定位等功能按钮在内的组合控件
+        map.addControl(new AMap.ToolBar());
+
+        // 在图面添加比例尺控件，展示地图在当前层级和纬度下的比例尺
+        map.addControl(new AMap.Scale());
+
+        // 在图面添加鹰眼控件，在地图右下角显示地图的缩略图
+        map.addControl(new AMap.OverView({ isOpen: true }));
+
+        // 在图面添加类别切换控件，实现默认图层与卫星图、实施交通图层之间切换的控制
+        map.addControl(new AMap.MapType());
+
+        // 在图面添加定位控件，用来获取和展示用户主机所在的经纬度位置
+        map.addControl(new AMap.Geolocation());
+    });
+    // 构造点标记
+    var marker = new AMap.Marker({
+        icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+        position: [116.405467, 39.907761]
+    });
+    // 构造矢量圆形
+    var circle = new AMap.Circle({
+        center: new AMap.LngLat("116.403322", "39.920255"), // 圆心位置
+        radius: 1000,  //半径
+        strokeColor: "#F33",  //线颜色
+        strokeOpacity: 1,  //线透明度
+        strokeWeight: 3,  //线粗细度
+        fillColor: "#ee2200",  //填充颜色
+        fillOpacity: 0.35 //填充透明度
+    });
+    map.add([marker, circle]);
+</script>
+
+</html>

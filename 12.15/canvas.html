@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #c{
+            width: 400px;
+            height: 400px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <span></span>
+</body>
+<!-- 不写宽高默认会是 宽300  高150 -->
+<canvas id="c"  ></canvas>
+<script>
+    /** 获取canvas对象*/
+    const cnv = document.getElementById("c")
+    /** 获取 上下文环境对象*/
+    const ctx = cnv.getContext("2d")
+    /** 绘制图形*/
+    ctx.moveTo(100,100) //起点坐标(x,y)
+    ctx.lineTo(200,100) //终点坐标(x,y)
+    ctx.stroke() // 将起点和终点连接起来
+    console.log(cnv.width);
+    console.log(cnv.height);
+</script>
+
+</html>

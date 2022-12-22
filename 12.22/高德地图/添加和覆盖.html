@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <style>
+        html,
+        body,
+        #container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn-item {
+            position: fixed;
+            top: 0;
+            right: 0;
+        }
+    </style>
+    <title>设置地图级别与中心点</title>
+</head>
+
+<body>
+    <div id="container"></div>
+    <div class="btn-item">
+        <button id="add-marker">添加marker</button>
+        <button id="remove-marker">删除marker</button>
+        <button id="add-circle">添加Circle</button>
+        <button id="remove-circle">删除Circle</button>
+
+    </div>
+
+
+    <script src="https://webapi.amap.com/maps?v=1.4.15&key=02eacb78f7f86d9c02415b97f123b8bf"></script>
+    <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+    <script>
+        var map = new AMap.Map("container", {
+            resizeEnable: true,
+            zoom: 12,
+            center: [114.59970042, 36.10594098],
+        })
+
+        var marker = new AMap.Marker({
+            icon: "https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png",
+            position: [114.39950042, 36.10594098]
+        })
+
+        var circle = new AMap.Circle({
+            center: new AMap.LngLat("114.39950042", "36.10594098"),
+            radius: 1000,
+            strokeColor: "#fff",
+            strokeOpacity: 1,
+            strokeWeight: 3,
+            fillColor: "#ee2200",
+            fillOpacity: 0.35
+        })
+
+        document.querySelector("#add-marker").onclick = function () {
+            map.add(marker);
+            map.setFitView();
+        }
+        document.querySelector("#remove-marker").onclick = function () {
+            map.remove(marker);
+            map.setFitView();
+        }
+        document.querySelector("#add-circle").onclick = function () {
+            map.add(circle);
+            map.setFitView();
+        }
+        document.querySelector("#remove-circle").onclick = function () {
+            map.remove(circle);
+            map.setFitView();
+        }
+    </script>
+</body>
+
+</html>
