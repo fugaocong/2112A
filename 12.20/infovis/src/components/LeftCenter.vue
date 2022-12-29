@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div id="main" style="width: 400px; height: 300px"></div>
+		<div id="left-center" style="width: 100%; height: 300px"></div>
 	</div>
 </template>
 
@@ -13,7 +13,7 @@
 		methods: {},
 		created() {},
 		mounted() {
-			var chartDom = document.getElementById('main');
+			var chartDom = document.getElementById('left-center');
 			var myChart = echarts.init(chartDom);
 			var option;
 			option = {

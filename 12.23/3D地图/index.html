@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css" />
+    <style>
+        html,
+        body,
+        #container {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <title>设置地图级别与中心点</title>
+</head>
+
+<body>
+    <div id="container"></div>
+
+
+    <script
+        src="https://webapi.amap.com/maps?v=1.4.15&key=02eacb78f7f86d9c02415b97f123b8bf&plugin=AMap.ControlBar,AMap.ToolBar"></script>
+    <script src="https://a.amap.com/jsapi_demos/static/demo-center/js/demoutils.js"></script>
+    <script>
+        var map;
+        function mapInit () {
+            map = new AMap.Map('container', {
+                rotateEnable: true,
+                pitchEnable: true,
+                zoom: 17,
+                pitch: 50,
+                rotation: -15,
+                viewMode: '3D',
+                zooms: [2, 20],
+                center: [116.333926, 39.997245]
+            });
+            var controlBar = new AMap.ControlBar({
+                position: {
+                    right: '10px',
+                    top: '10px'
+                }
+            });
+            controlBar.addTo(map);
+
+            var toolBar = new AMap.ToolBar({
+                position: {
+                    right: '40px',
+                    top: '110px'
+                }
+            });
+            toolBar.addTo(map);
+        }
+        mapInit()
+    </script>
+</body>
+
+</html>
