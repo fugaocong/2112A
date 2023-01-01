@@ -44,7 +44,9 @@
 					</div>
 				</div>
 				<div class="center">
-					<div class="center-top"></div>
+					<div class="center-top">
+						<centerTop></centerTop>
+					</div>
 					<div class="center-middle">
 						<center-middle></center-middle>
 					</div>
@@ -53,6 +55,7 @@
 							<p></p>
 							<p>模块标题</p>
 						</div>
+                        <centerBottom></centerBottom>
 					</div>
 				</div>
 				<div class="right">
@@ -93,6 +96,7 @@
 							<p></p>
 							<p>排行榜</p>
 						</div>
+                        <rightBottom></rightBottom>
 					</div>
 				</div>
 			</main>
@@ -106,6 +110,9 @@
 	import LeftBottom from '@/components/LeftBottom.vue';
 	import RightCenter from '@/components/RightCenter.vue';
 	import CenterMiddle from '@/components/CenterMiddle.vue';
+	import centerTop from '@/components/centerTop.vue';
+	import rightBottom from '@/components/rightBottom.vue';
+	import centerBottom from '@/components/centerBottom.vue';
 	export default {
 		data() {
 			return {
@@ -113,7 +120,15 @@
 				times: '',
 			};
 		},
-		components: { LeftCenter, LeftBottom, RightCenter, CenterMiddle },
+		components: {
+			LeftCenter,
+			LeftBottom,
+			RightCenter,
+			CenterMiddle,
+			centerTop,
+            rightBottom,
+            centerBottom
+		},
 		created() {},
 		mounted() {
 			/**调用定时器 */
