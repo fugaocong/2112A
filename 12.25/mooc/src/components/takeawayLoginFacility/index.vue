@@ -6,7 +6,7 @@
 			</div>
 			<div class="right">
 				<div class="top">
-					<h5>慕课外卖用户年龄分布&平均年龄</h5>
+					<h5>慕课外卖登录设备</h5>
 					<p>of Age</p>
 				</div>
 				<div class="bottom">
@@ -59,30 +59,17 @@
 			var myChart = echarts.init(chartDom);
 			var option;
 			option = {
+                backgroundColor:"#2b2c2e",
 				title: {
 					left: 'center',
 					top: 20,
-					textStyle: {
-						color: '#ccc',
-					},
+					
 				},
 
-				tooltip: {
-					trigger: 'item',
-					formatter: '{a} <br/>{b} : {c} ({d}%)',
-				},
-
-				visualMap: {
-					show: false,
-					min: 80,
-					max: 600,
-					inRange: {
-						colorLightness: [0, 1],
-					},
-				},
+				
 				series: [
 					{
-						name: '访问来源',
+						name: '',
 						type: 'pie',
 						radius: '55%',
 						center: ['50%', '50%'],
@@ -91,11 +78,21 @@
 								return a.value - b.value;
 							},
 						),
-						roseType: 'angle',
+						roseType: 'radius',
+                        labelLine:{
+                            show:false
+                        },
+                        itemStyle:{
+                            color:"#83a748"
+                        }
+
 					},
 				],
 			};
 			option && myChart.setOption(option);
+            window.onresize = function(){
+                myChart.resize()
+            }
 		},
 		components: {},
 		computed: {},
@@ -118,7 +115,7 @@
 			flex-wrap: wrap;
 			justify-content: space-between;
             flex-direction: column;
-			align-items: center;
+			// align-items: center;
 			.top {
 				> p {
 					font-size: 12px;

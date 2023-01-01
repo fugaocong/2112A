@@ -21,30 +21,57 @@
 					<takeawayLoginFacility></takeawayLoginFacility>
 				</div>
 				<!-- 男性女性人数 -->
-				<div class="man-woman-user-num"></div>
+				<div class="man-woman-user-num">
+                    <manWomanUserNum></manWomanUserNum>
+                </div>
 				<!-- 外卖骑手概况 -->
-				<div class="takeaway-rider"></div>
+				<div class="takeaway-rider">
+                    <takeawayRider></takeawayRider>
+                </div>
 				<!-- 当前热卖品类 -->
-				<div class="hot-selling-category"></div>
+				<div class="hot-selling-category">
+                    <hotSellingCategory></hotSellingCategory>
+                </div>
 			</div>
 			<div class="right">
 				<!-- 今日统计 -->
-				<div class="right-header"></div>
+				<div class="right-header">
+                    <rightHeader></rightHeader>
+                </div>
 				<!-- 地方数据的导航栏 -->
-				<div class="right-nav"></div>
+				<div class="right-nav">
+                    <rightNav></rightNav>
+                </div>
 				<!-- 外卖销售 -->
 				<div class="takeaway-market">
 					<!-- 地图数据 -->
-					<div class="takeaway-market-left"></div>
+					<div class="takeaway-market-left">
+                        <takeawayMarketLeft></takeawayMarketLeft>
+                    </div>
 					<!-- 区域销售分析 -->
-					<div class="takeaway-market-right"></div>
+					<div class="takeaway-market-right">
+                        <takeawayMarketRight></takeawayMarketRight>
+                    </div>
 				</div>
 				<!-- 订单和商家销售排行 -->
 				<div class="order-form-shops">
 					<!-- 左侧 -->
-					<div class="order-form"></div>
+					<div class="order-form">
+                        <div class="order-form-nav">
+                            <orderFormNav></orderFormNav>
+                        </div>
+                        <div class="order-form-top">
+                            <orderFormTop></orderFormTop>
+                        </div>
+                        <div class="order-form-bottom">
+                            <orderFormBottom></orderFormBottom>
+                        </div>
+                        
+                    </div>
 					<!-- 右侧商家排行 -->
-					<div class="shops-ranking"></div>
+					<div class="shops-ranking">
+                        <shopsRanking></shopsRanking>
+                    </div>
 				</div>
 			</div>
 		</main>
@@ -55,11 +82,37 @@
 	import takeawayUserSum from '../components/takeawayUserSum/index.vue';
 	import takeawayUserAge from '../components/takeawayUserAge/index.vue';
 	import takeawayLoginFacility from '../components/takeawayLoginFacility/index.vue';
+	import manWomanUserNum from '../components/manWomanUserNum/index.vue';
+	import takeawayRider from '../components/takeawayRider/index.vue';
+	import hotSellingCategory from '../components/hotSellingCategory/index.vue';
+    import rightHeader from '../components/rightHeader/index.vue'
+    import rightNav from '../components/rightNav/index.vue'
+    import takeawayMarketLeft from '../components/takeawayMarket/takeawayMarketLeft.vue'
+    import shopsRanking from '../components/shopsRanking/index.vue'
+    import takeawayMarketRight from '../components/takeawayMarket/takeawayMarketRight.vue'
+    import orderFormTop from '../components/orderFormShops/orderFormTop.vue'
+    import orderFormBottom from '../components/orderFormShops/orderFormBottom.vue'
+    import orderFormNav from '../components/orderFormShops/orderFormNav.vue'
 	export default {
 		data() {
 			return {};
 		},
-		components: { takeawayUserSum, takeawayUserAge, takeawayLoginFacility },
+		components: {
+			takeawayUserSum,
+			takeawayUserAge,
+			takeawayLoginFacility,
+			manWomanUserNum,
+            takeawayRider,
+            hotSellingCategory,
+            rightHeader,
+            rightNav,
+            takeawayMarketLeft,
+            shopsRanking,
+            takeawayMarketRight,
+            orderFormTop,
+            orderFormBottom,
+            orderFormNav
+		},
 		methods: {},
 		created() {},
 		mounted() {},
@@ -73,6 +126,7 @@
 	header {
 		height: 7vh;
 		width: 100vw;
+        overflow: hidden;
 		background-color: #1b1b1b;
 		text-align: center;
 		color: #fff;
@@ -92,6 +146,7 @@
 	main {
 		height: 93vh;
 		width: 100vw;
+        overflow: hidden;
 		background-color: #1b1b1b;
 		display: flex;
 		color: #fff;
@@ -205,6 +260,13 @@
 					height: 100%;
 					background-color: #414244;
 					margin-right: 0.4%;
+
+                    .order-from-nav{
+                        height: 10%;
+                    }
+                    .order-from-top{
+                        height: 50%;
+                    }
 				}
 				/**商家排行 */
 				.shops-ranking {
